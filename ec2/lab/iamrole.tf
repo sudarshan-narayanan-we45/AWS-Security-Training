@@ -8,7 +8,7 @@ resource "aws_iam_role" "ec2_ssm_access_role" {
     {
       "Action": "sts:AssumeRole",
       "Principal": {
-        "Service": "ssm.amazonaws.com"
+        "Service": "ec2.amazonaws.com"
       },
       "Effect": "Allow",
       "Sid": ""
@@ -18,17 +18,28 @@ resource "aws_iam_role" "ec2_ssm_access_role" {
 EOF
 }
 
-resource "aws_iam_policy" "policy" {
+resource "aws_iam_policy" "ssm-iam-policy" {
   name        = "SSM-policy"
   description = "SSM Policy"
-  policy      = "${file("ssm_policy.json")}"
+  policy      = <<EOF
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": ["ssm:GetParameter", "ssm:GetParameters"],
+            "Resource": "*"
+        }
+    ]
+  }
+EOF
 }
 
 
 resource "aws_iam_policy_attachment" "ec2_ssm_policy_attach" {
   name       = "ec2_ssm_policy_attach"
   roles = ["${aws_iam_role.ec2_ssm_access_role.name}"]
-  policy_arn = "${aws_iam_policy.policy.arn}"
+  policy_arn = "${aws_iam_policy.ssm-iam-policy.arn}"
 }
 
 resource "aws_iam_instance_profile" "ec2_ssm_profile" {
