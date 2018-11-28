@@ -9,3 +9,4 @@ hosts_lab/.terraform/plugins/darwin_amd64/terraform-provider-aws_v1.42.0_x4
 hosts_lab/hostkey
 hosts_lab/hostkey.pub
 vagrant/*
+*.DS_Store

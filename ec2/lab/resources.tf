@@ -12,8 +12,37 @@ resource "aws_key_pair" "generated_key" {
 
 //Define database inside the private subnet
 
+data "aws_ami" "amz_linux" {
+  most_recent = true
+  filter {
+    name = "name"
+    values = ["amzn-ami-*-x86_64-gp2"]
+  }
+  filter {
+    name = "virtualization-type"
+    values = ["hvm"]
+  }
+  filter {
+    name = "owner-alias"
+    values = ["amazon"]
+  }
+}
+
+resource "aws_instance" "bastion_host" {
+  ami = "${data.aws_ami.amz_linux.id}"
+  instance_type = "t1.micro"
+  key_name = "${aws_key_pair.generated_key.key_name}"
+  subnet_id = "${aws_subnet.public-subnet.id}"
+  vpc_security_group_ids = ["${aws_security_group.sgweb.id}"]
+  associate_public_ip_address = true
+  tags {
+    Name = "bastion-host"
+  }
+
+}
+
 resource "aws_instance" "db" {
-  ami = "${data.aws_ami.ubuntu.id}"
+  ami = "${data.aws_ami.amz_linux.id}"
   instance_type = "t1.micro"
   key_name = "${aws_key_pair.generated_key.key_name}"
   subnet_id = "${aws_subnet.private-subnet.id}"
@@ -27,21 +56,27 @@ resource "aws_instance" "db" {
   }
   connection {
     type = "ssh"
-    user = "ubuntu"
+    host = "${aws_instance.bastion_host.public_ip}"
+    user = "ec2-user"
     agent = false
     private_key = "${tls_private_key.ucsf_test_key.private_key_pem}"
     timeout = "10m"
   }
   provisioner "file" {
-    source = "/Users/tilakt/Documents/projects/UCSF/AWS-Security-Training/ec2/lab/install_redis.sh"
-    destination = "/tmp/install_redis.sh"
+    source = "redis.conf"
+    destination = "/tmp/redis.conf"
   }
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/install_redis.sh",
-      "sudo /tmp/install_redis.sh",
+      "sudo yum-config-manager --enable epel",
+      "sudo yum install -y redis",
+      "sudo rm /etc/redis.conf",
+      "sudo mv /tmp/redis.conf /etc/redis.conf",
+      "sudo redis-server &>/dev/null",
     ]
   }
+
+  depends_on = ["aws_instance.bastion_host"]
 }
 
 
