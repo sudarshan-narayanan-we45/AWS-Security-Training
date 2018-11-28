@@ -5,20 +5,13 @@ resource "aws_security_group" "sgweb" {
   description = "Allow incoming HTTP connections & SSH access"
 
   ingress {
-    from_port = 80
+    from_port = 0
     protocol = "tcp"
     to_port = 80
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  ingress {
-    from_port = 443
-    protocol = "tcp"
-    to_port = 443
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
+  egress {
     from_port = -1
     protocol = "icmp"
     to_port = -1
@@ -32,18 +25,26 @@ resource "aws_security_group" "sgweb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+
   egress {
-    from_port = 80
+    from_port = 0
+    protocol = "tcp"
+    to_port = 443
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port = 0
     protocol = "tcp"
     to_port = 80
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
-    from_port = 443
+    from_port = 0
     protocol = "tcp"
-    to_port = 443
-    cidr_blocks = ["0.0.0.0/0"]
+    to_port = 6379
+    cidr_blocks = ["${var.public_subnet_cidr}"]
   }
 
   vpc_id = "${aws_vpc.default.id}"
@@ -61,7 +62,7 @@ resource "aws_security_group" "sgdb" {
   description = "Allow traffic from public subnet"
 
   ingress {
-    from_port = 6379
+    from_port = 0
     protocol = "tcp"
     to_port = 6379
     cidr_blocks = ["${var.public_subnet_cidr}"]
@@ -75,21 +76,21 @@ resource "aws_security_group" "sgdb" {
   }
 
   ingress {
-    from_port = 22
+    from_port = 0
     protocol = "tcp"
     to_port = 22
     cidr_blocks = ["${var.public_subnet_cidr}"]
   }
 
   egress {
-    from_port = 80
+    from_port = 0
     protocol = "tcp"
     to_port = 80
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
-    from_port = 443
+    from_port = 0
     protocol = "tcp"
     to_port = 443
     cidr_blocks = ["0.0.0.0/0"]

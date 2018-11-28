@@ -9,29 +9,29 @@ import redis
 import urllib
 import os
 import boto3
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 # redis_host = "test.internal"
 session = boto3.Session(region_name='us-east-1')
 ssm = session.client('ssm')
 db_ip = 'db_ip'
-response = ssm.get_parameters(
-    Names=[
-        db_ip,
-    ],
-    WithDecryption=True
-)
-credentials = response['Parameters'][0]['Value'] | 'localhost'
-print ("credentials ====>",credentials)
-redis_host = credentials
+# response = ssm.get_parameters(
+#     Names=[
+#         db_ip,
+#     ],
+#     WithDecryption=True
+# )
+# print (response)
+# credentials = response['Parameters'][0]['Value'] | 'localhost'
+# print ("credentials ====>",credentials)
+redis_host = '127.0.0.1'
 redis_port = 6379
+db = redis.StrictRedis(host=redis_host, port=redis_port, decode_responses=True)
 
 @app.route('/',methods = ['GET', 'POST'])
 def home():
-    db = redis.StrictRedis(host=redis_host, port=redis_port, decode_responses=True)
-    db.set("hello", "Hello Redis!!!")
-    if (db.exists('id') == False):
-        db.set('id', '0')
     if request.method == 'GET':
+        if (db.exists('id') == False):
+            db.set('id', '0')
         keys = db.keys()
         val = db.mget(keys)
         data = dict(zip(keys, val))
@@ -87,5 +87,5 @@ if __name__ == '__main__':
         (r'/websocket', WSHandler),
         (r'.*', FallbackHandler, dict(fallback=wsgi_app))
     ])
-    application.listen(80, address='0.0.0.0')
+    application.listen(80)
     IOLoop.instance().start()

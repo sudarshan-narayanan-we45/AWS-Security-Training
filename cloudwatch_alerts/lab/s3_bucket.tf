@@ -4,6 +4,7 @@ resource "aws_s3_bucket" "ucsf_cloud_trail_log_bucket" {
   bucket_prefix = "${var.bucket_prefix}"
   acl           = "private"
   region        = "${var.aws_region}"
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_policy" "ucsf_cloud_trail_log_bucket_policy" {

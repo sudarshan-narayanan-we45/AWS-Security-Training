@@ -21,18 +21,7 @@ EOF
 resource "aws_iam_policy" "ssm-iam-policy" {
   name        = "SSM-policy"
   description = "SSM Policy"
-  policy      = <<EOF
-  {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": ["ssm:GetParameter", "ssm:GetParameters"],
-            "Resource": "*"
-        }
-    ]
-  }
-EOF
+  policy      = "${file("ssm_policy.json")}"
 }
 
 
