@@ -45,7 +45,7 @@ data "aws_ami" "amz_linux" {
 
 resource "aws_instance" "ucsf-instance" {
   ami = "${data.aws_ami.amz_linux.id}"
-  instance_type = "t2.micro"
+  instance_type = "t1.micro"
   key_name = "${aws_key_pair.hostkey.key_name}"
   security_groups = ["${aws_security_group.host_security_group.name}"]
 
