@@ -1,10 +1,23 @@
+resource "random_string" "log-bucket" {
+  length = 10
+  special = false
+  upper = false
+}
+
+resource "random_string" "random-bucket" {
+  length = 10
+  special = false
+  upper = false
+}
+
+
 resource "aws_s3_bucket" "logs" {
-  bucket = "ucsf-site-logs"
+  bucket = "${random_string.log-bucket.result}-ucsf-site-logs"
   acl = "log-delivery-write"
 }
 
 resource "aws_s3_bucket" "static_app" {
-  bucket = "ucsf-static"
+  bucket = "${random_string.random-bucket.result}-ucsf-static"
 
   logging {
     target_bucket = "${aws_s3_bucket.logs.id}"
@@ -18,7 +31,7 @@ resource "aws_s3_bucket" "static_app" {
 }
 
 resource "aws_s3_bucket_object" "aws_site" {
-  bucket = "ucsf-static"
+  bucket = "${aws_s3_bucket.static_app.bucket}"
   key = "index.html"
   source = "index.html"
   depends_on = ["aws_s3_bucket.static_app"]

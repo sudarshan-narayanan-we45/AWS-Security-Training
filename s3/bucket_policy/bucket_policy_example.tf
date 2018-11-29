@@ -8,8 +8,11 @@ resource "aws_s3_bucket" "policy_bucket" {
   bucket = "${random_string.bucket_name.result}-policy-bucket"
 }
 
+variable "public_host" {}
+
 resource "aws_s3_bucket_policy" "policy" {
   bucket = "${aws_s3_bucket.policy_bucket.id}"
+
   policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -25,7 +28,7 @@ resource "aws_s3_bucket_policy" "policy" {
           "arn:aws:s3:::${aws_s3_bucket.policy_bucket.bucket}/*"
         ],
         "Condition": {
-           "IpAddress": {"aws:SourceIp": "106.51.39.100/32"}
+           "IpAddress": {"aws:SourceIp": "${var.public_host}/32"}
         }
       }
   ]

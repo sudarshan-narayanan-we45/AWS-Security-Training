@@ -15,13 +15,22 @@ sudo mv terraform /usr/local/bin/
 echo "Installing NodeJS and NPM"
 sudo npm install -g serverless
 # install vulnerability scanning tools for aws
-mkdir /home/vagrant/Desktop/Labs
+mkdir -p /home/vagrant/Desktop/Labs
+mkdir -p /home/vagrant/Desktop/Labs/providers
+cd /home/vagrant/Desktop/Labs/providers
+#install terraform providers
+wget https://releases.hashicorp.com/terraform-provider-aws/0.1.2/terraform-provider-aws_0.1.2_linux_amd64.zip
+unzip terraform-provider-aws_0.1.2_linux_amd64.zip
+wget https://releases.hashicorp.com/terraform-provider-random/2.0.0/terraform-provider-random_2.0.0_linux_amd64.zip
+unzip terraform-provider-random_2.0.0_linux_amd64.zip
+cd /home/vagrant/Desktop/Labs
+git clone https://github.com/we45/AWS-Security-Training.git
 mkdir -p /home/vagrant/Desktop/Labs/Vulnerability_Assessment
 mkdir -p /home/vagrant/Desktop/Labs/Vulnerability_Assessment/scout2
 mkdir -p /home/vagrant/Desktop/Labs/Vulnerability_Assessment/prowler
-mkdir -p /home/vagrant/Desktop/Labs/Automation
-mkdir -p /home/vagrant/Desktop/Labs/Automation/base
 cd /home/vagrant/Desktop/Labs/Vulnerability_Assessment/scout2
 pip install awsscout2
-cd /home/vagrant/Desktop/Labs/Vulnerability_Assessment/prowler
+cd /home/vagrant/Desktop/Labs/Vulnerability_Assessment
 git clone https://github.com/toniblyx/prowler.git
+#install root shell stuff
+sudo apt-get install -y gksu

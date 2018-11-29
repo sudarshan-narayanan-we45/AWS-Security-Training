@@ -19,7 +19,7 @@ resource "local_file" "aws_key" {
 
 
 resource "aws_security_group" "allow_ssh" {
-  name        = "allow_ssh"
+  name        = "lynis-ssh-vpc"
   description = "Allow all ssh traffic"
 
   ingress {
