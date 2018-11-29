@@ -11,10 +11,10 @@ the command line.
 
 ##### Step 2:
 
-*  **cd** into  `/home/we45/AWS-Security-Training/cli`
+*  **cd** into  ` /home/vagrant/Desktop/Labs/AWS-Security-Training/cli`
 
     ```commandline
-    cd /home/we45/AWS-Security-Training/cli
+    cd  /home/vagrant/Desktop/Labs/AWS-Security-Training/cli
     ```
 
 ##### Step 3:

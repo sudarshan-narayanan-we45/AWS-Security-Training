@@ -7,12 +7,14 @@
 
 * Open Terminal
 
+![](img/terminal.png)
+
 ##### Step 2:
 
-*  **cd** into  `/home/we45/AWS-Security-Training/cloud_mapper/lab`
+*  **cd** into  `/home/vagrant/Desktop/Labs/AWS-Security-Training/cloud_mapper/lab`
 
     ```commandline
-    cd /home/we45/AWS-Security-Training/cloud_mapper/lab
+    cd /home/vagrant/Desktop/Labs/AWS-Security-Training/cloud_mapper/lab
     ```
 
 ##### Step 3:

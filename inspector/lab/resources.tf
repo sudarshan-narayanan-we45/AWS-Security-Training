@@ -18,48 +18,6 @@ resource "local_file" "aws_key" {
 }
 
 
-resource "aws_security_group" "allow_ssh" {
-  name        = "allow_ssh"
-  description = "Allow all ssh traffic"
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
-    cidr_blocks     = ["0.0.0.0/0"]
-  }
-}
-
-resource "aws_inspector_resource_group" "test-group" {
-  tags {
-    Name = "${aws_instance.inspector.tags.Name}"
-    Env  = "test-group"
-  }
-}
-
-resource "aws_inspector_assessment_target" "test-target" {
-  name = "inspector-assessment"
-  resource_group_arn = "${aws_inspector_resource_group.test-group.arn}"
-}
-
-resource "aws_inspector_assessment_template" "test-template" {
-  name       = "test-template"
-  target_arn = "${aws_inspector_assessment_target.test-target.arn}"
-  duration   = 3600
-
-  rules_package_arns = [
-    "arn:aws:inspector:us-east-1:316112463485:rulespackage/0-PmNV0Tcd",
-  ]
-}
-
-
 resource "aws_instance" "inspector" {
 
   tags {
@@ -82,7 +40,7 @@ resource "aws_instance" "inspector" {
   	}
   	inline = [
   		"cd /tmp && curl -O https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install",
-      "sudo bash /tmp/install",
+        "sudo bash /tmp/install",
   	]
   }
 }

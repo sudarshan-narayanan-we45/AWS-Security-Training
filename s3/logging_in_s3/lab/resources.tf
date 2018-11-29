@@ -1,10 +1,13 @@
 resource "aws_s3_bucket" "logs" {
   bucket = "ucsf-site-logs"
   acl = "log-delivery-write"
+  force_destroy = true
 }
 
 resource "aws_s3_bucket" "static_app" {
   bucket = "ucsf-static"
+  acl    = "public-read"
+  force_destroy = true
 
   logging {
     target_bucket = "${aws_s3_bucket.logs.id}"
@@ -13,6 +16,18 @@ resource "aws_s3_bucket" "static_app" {
 
   website {
     index_document = "index.html"
+    error_document = "index.html"
+    routing_rules = <<EOF
+    [{
+        "Condition": {
+            "KeyPrefixEquals": "docs/"
+        },
+        "Redirect": {
+            "ReplaceKeyPrefixWith": "documents/"
+        }
+    }]
+    EOF
+
   }
   depends_on = ["aws_s3_bucket.logs"]
 }

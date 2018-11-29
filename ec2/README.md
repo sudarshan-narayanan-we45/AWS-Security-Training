@@ -10,20 +10,30 @@
 
 * Open Terminal
 
+![](img/terminal.png)
+
 ##### Step 2:
 
-*  **cd** into  `/home/we45/AWS-Security-Training/ec2/lab`
+*  **cd** into  ` /home/vagrant/Desktop/Labs/AWS-Security-Training/ec2/lab`
 
-    ```commandline
-    cd /home/we45/AWS-Security-Training/ec2/lab
-    ```
+```commandline
+cd  /home/vagrant/Desktop/Labs/AWS-Security-Training/ec2/lab
+```
 ##### Step 3:
 
 * Run `terraform apply`
-**Note:** Once you press enter it will ask you a permission to do the action like `Do you want to perform these actions?`
+* **Note:**
+ 
+1. Once you enter it will ask you to enter `key name` give any name you like, using same key we can ssh into the ec2 server.
+
+2. Once you press enter it will ask you a permission to do the action like `Do you want to perform these actions?`
 then type `yes` and press `enter` it will continues the rest of the actions.
+
 ```commandline
 terraform apply
+
+var.key_name
+  Enter a value:ucsf_ec2_instance
 
 An execution plan has been generated and is shown below.
 Resource actions are indicated with the following symbols:
@@ -55,16 +65,15 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 * Open AWS console in the browser and check the created `EC2 ` Instance
 
- ##### Step 5 :
+##### Step 5 :
  
  * Run `terraform destroy` to remove the EC2 from the AWS.
- 
- **Note:** It will ask your permission to destroy the created EC2 from the AWS `Do you really want to destroy all resources?` then type 'yes' then press `enter
+ * **Note:** It will ask your permission to destroy the created EC2 from the AWS `Do you really want to destroy all resources?` then type 'yes' then press `enter
  to continue the process. 
- 
+  
  ```commandline
- 
-Do you really want to destroy all resources?
+  
+  Do you really want to destroy all resources?
   Terraform will destroy all your managed infrastructure, as shown above.
   There is no undo. Only 'yes' will be accepted to confirm.
 

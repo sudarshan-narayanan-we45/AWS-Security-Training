@@ -1,8 +1,9 @@
-## AWS Security Group
+## Lynis
 
->A security group acts as a virtual firewall for your instance to control inbound and outbound traffic. When you launch an instance in a VPC, you can assign up to five security groups to the instance. Security groups act at the instance level, not the subnet level. Therefore, each instance in a subnet in your VPC could be assigned to a different set of security groups. If you don't specify a particular group at launch time, the instance is automatically assigned to the default security group for the VPC.
-
-For each security group, you add rules that control the inbound traffic to instances, and a separate set of rules that control the outbound traffic. This section describes the basic things you need to know about security groups for your VPC and their rules. 
+>Using Lynis we can Audit, System hardening, 
+compliance testing in the EC2 instance.It performs an 
+extensive health scan of your systems to support system 
+hardening and compliance testing. 
 
 
 ##### Step 1:
@@ -13,22 +14,24 @@ For each security group, you add rules that control the inbound traffic to insta
 
 ##### Step 2:
 
-*  **cd** into  ` /home/vagrant/Desktop/Labs/AWS-Security-Training/security_group/lab`
+*  **cd** into  ` /home/vagrant/Desktop/Labs/AWS-Security-Training/lynis/lab`
 
-    ```commandline
-    cd  /home/vagrant/Desktop/Labs/AWS-Security-Training/security_group/lab
-    ```
+```commandline
+cd  /home/vagrant/Desktop/Labs/AWS-Security-Training/lynis/lab
+```
 ##### Step 3:
 
 * Run `terraform apply`
-
 * **Note:**
  
-1. Once you enter it will ask you to enter `key name` give any name you like, using same key we can ssh into the ec2 server.
+1. Once you enter it will ask you to enter `key name` 
+give any name you like, using same key we can ssh into 
+the ec2 server.
 
-2. Once you press enter it will ask you a permission to do the action like `Do you want to perform these actions?`
-then type `yes` and press `enter` it will continues the rest of the actions.
-
+2. Once you press enter it will ask you a permission 
+to do the action like `Do you want to perform these actions?`
+then type `yes` and press `enter` it will continues 
+the rest of the actions.
 
 ```commandline
 terraform apply
@@ -64,18 +67,17 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 ##### Step 4 :
 
-* Open AWS console in the browser and check the created `EC2` and check security group 
+* Need to write
 
 ##### Step 5 :
  
- * Run `terraform destroy` to remove the EC2 and Security Group from the AWS.
- 
- **Note:** It will ask your permission to destroy the created EC2 from the AWS `Do you really want to destroy all resources?` then type 'yes' then press `enter
+ * Run `terraform destroy` to remove the EC2 from the AWS.
+ * **Note:** It will ask your permission to destroy the created EC2 from the AWS `Do you really want to destroy all resources?` then type 'yes' then press `enter
  to continue the process. 
- 
+  
  ```commandline
- 
-    Do you really want to destroy all resources?
+  
+  Do you really want to destroy all resources?
   Terraform will destroy all your managed infrastructure, as shown above.
   There is no undo. Only 'yes' will be accepted to confirm.
 
