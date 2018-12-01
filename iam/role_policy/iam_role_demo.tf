@@ -8,6 +8,12 @@ resource "aws_s3_bucket" "ec2-bucket" {
   bucket = "${random_string.bucket_name.result}-uploads"
 }
 
+resource "aws_s3_bucket_object" "hello_file" {
+  bucket = "${aws_s3_bucket.ec2-bucket.bucket}"
+  key = "hello.txt"
+  source = "hello.txt"
+}
+
 
 resource "aws_iam_role_policy" "attach-policy" {
   role = "${aws_iam_role.tes_role.id}"
@@ -17,7 +23,8 @@ resource "aws_iam_role_policy" "attach-policy" {
   "Statement": [
     {
       "Action": [
-        "s3:*"
+        "s3:*",
+        "s3:PutObject"
       ],
       "Effect": "Allow",
       "Resource": "${aws_s3_bucket.ec2-bucket.arn}"
@@ -48,6 +55,10 @@ EOF
 resource "aws_iam_instance_profile" "test_profile" {
   name  = "test_profile"
   role = "${aws_iam_role.tes_role.name}"
+}
+
+output "aws_iam_role_profile_name" {
+  value = "Role: ${aws_iam_role.tes_role.arn}, Profile: ${aws_iam_instance_profile.test_profile.arn}"
 }
 
 variable "key_name" {}
@@ -109,6 +120,7 @@ resource "aws_security_group" "host_security_group" {
 }
 
 
+
 resource "aws_instance" "test-host" {
   ami = "${data.aws_ami.amz_linux.id}"
   instance_type = "t1.micro"
@@ -129,16 +141,9 @@ resource "aws_instance" "test-host" {
     timeout = "10m"
   }
 
-//  provisioner "file" {
-//    source = "script.sh"
-//    destination = "/tmp/script.sh"
-//  }
-//  provisioner "remote-exec" {
-//    inline = [
-//      "sudo chmod +x /tmp/script.sh",
-//      "sudo /tmp/script.sh ${aws_s3_bucket.ec2-bucket.bucket}",
-//    ]
-//  }
+  provisioner "remote-exec" {
+    inline = ["sudo aws s3 ls s3://${aws_s3_bucket.ec2-bucket.bucket}"]
+  }
 
   depends_on = ["aws_iam_role.tes_role"]
 

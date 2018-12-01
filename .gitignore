@@ -11,3 +11,5 @@ hosts_lab/hostkey.pub
 vagrant/*
 *.DS_Store
 ec2/lab/.terraform.tfstate.lock.info
+iam/role_policy/.terraform.tfstate.lock.info
+iam/role_policy/aws_test.pem
