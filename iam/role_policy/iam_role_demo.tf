@@ -8,8 +8,26 @@ resource "aws_s3_bucket" "ec2-bucket" {
   bucket = "${random_string.bucket_name.result}-uploads"
 }
 
-resource "aws_iam_role" "ec-upload-role" {
-  name = "Random_Role_For_Uploads"
+
+resource "aws_iam_role_policy" "attach-policy" {
+  role = "${aws_iam_role.tes_role.id}"
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "s3:*"
+      ],
+      "Effect": "Allow",
+      "Resource": "${aws_s3_bucket.ec2-bucket.arn}"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role" "tes_role" {
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -27,37 +45,9 @@ resource "aws_iam_role" "ec-upload-role" {
 EOF
 }
 
-resource "aws_iam_policy" "policy" {
-  name        = "${random_string.bucket_name.result}-randomuploads"
-  path        = "/"
-  description = "${random_string.bucket_name.result}-randomuploads"
-
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "s3:*"
-      ],
-      "Effect": "Allow",
-      "Resource": "${aws_s3_bucket.ec2-bucket.arn}"
-    }
-  ]
-}
-EOF
-}
-
-resource "aws_iam_role_policy_attachment" "policy_attach_ec_role" {
-  policy_arn = "${aws_iam_policy.policy.arn}"
-  role = "${aws_iam_role.ec-upload-role.arn}"
-  depends_on = ["aws_iam_policy.policy", "aws_iam_role.ec-upload-role"]
-}
-
-
 resource "aws_iam_instance_profile" "test_profile" {
   name  = "test_profile"
-  role = "${aws_iam_role.ec-upload-role.name}"
+  role = "${aws_iam_role.tes_role.name}"
 }
 
 variable "key_name" {}
@@ -86,6 +76,11 @@ resource "tls_private_key" "ucsf_test_key" {
 resource "aws_key_pair" "generated_key" {
   key_name   = "${var.key_name}"
   public_key = "${tls_private_key.ucsf_test_key.public_key_openssh}"
+}
+
+resource "local_file" "aws_key" {
+  content = "${tls_private_key.ucsf_test_key.private_key_pem}"
+  filename = "aws_test.pem"
 }
 
 resource "aws_security_group" "host_security_group" {
@@ -134,17 +129,17 @@ resource "aws_instance" "test-host" {
     timeout = "10m"
   }
 
-  provisioner "file" {
-    source = "script.sh"
-    destination = "/tmp/script.sh"
-  }
-  provisioner "remote-exec" {
-    inline = [
-      "sudo chmod +x /tmp/script.sh",
-      "sudo /tmp/script.sh ${aws_s3_bucket.ec2-bucket.bucket}",
-    ]
-  }
+//  provisioner "file" {
+//    source = "script.sh"
+//    destination = "/tmp/script.sh"
+//  }
+//  provisioner "remote-exec" {
+//    inline = [
+//      "sudo chmod +x /tmp/script.sh",
+//      "sudo /tmp/script.sh ${aws_s3_bucket.ec2-bucket.bucket}",
+//    ]
+//  }
 
-  depends_on = ["aws_iam_role_policy_attachment.policy_attach_ec_role", "aws_iam_role.ec-upload-role"]
+  depends_on = ["aws_iam_role.tes_role"]
 
 }
