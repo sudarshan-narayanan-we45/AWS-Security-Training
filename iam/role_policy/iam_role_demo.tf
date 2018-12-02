@@ -132,7 +132,6 @@ resource "aws_instance" "test-host" {
   tags {
     Name = "${random_string.bucket_name.result}-host"
   }
-
   connection {
     type = "ssh"
     user = "ec2-user"
@@ -140,11 +139,8 @@ resource "aws_instance" "test-host" {
     private_key = "${tls_private_key.ucsf_test_key.private_key_pem}"
     timeout = "10m"
   }
-
   provisioner "remote-exec" {
     inline = ["sudo aws s3 ls s3://${aws_s3_bucket.ec2-bucket.bucket}"]
   }
-
   depends_on = ["aws_iam_role.tes_role"]
-
 }
