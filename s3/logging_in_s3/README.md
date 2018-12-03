@@ -1,7 +1,6 @@
 ## AWS S3 Static Website Hosting with Logging 
 
->Using Amazon S3  we can deploy a static application as well as 
-we can log the server information in the S3 bucket.
+>Using Amazon S3, we can deploy a static application and log the server information in the S3 bucket.
 
 
 ##### Step 1:
@@ -40,12 +39,12 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 ##### Step 4 :
 
-* Open the link in the browser, which was shown in the terminal output
+* Open the link shown as an output in the terminal on the browser.
 
 ##### Step 5 :
  
  * Run `terraform destroy` to remove the S3 from the AWS.
- * **Note:** It will ask your permission to destroy the created EC2 from the AWS `Do you really want to destroy all resources?` then type 'yes' then press `enter
+ * **Note:** It will ask your permission to destroy the created EC2 from AWS (`Do you really want to destroy all resources?`). Type 'yes' and press `enter`
  to continue the process. 
   
  ```commandline
