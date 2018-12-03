@@ -13,3 +13,4 @@ vagrant/*
 ec2/lab/.terraform.tfstate.lock.info
 iam/role_policy/.terraform.tfstate.lock.info
 iam/role_policy/aws_test.pem
+.idea/*
