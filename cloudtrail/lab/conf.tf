@@ -10,7 +10,7 @@ resource "aws_cloudtrail" "cloudtrial" {
 }
 
 resource "aws_s3_bucket" "s3-bucket" {
-  bucket        = "tf-test-trail-ucsf"
+  bucket        = "tf-test-trail"
   force_destroy = true
 
   policy = <<POLICY
@@ -24,7 +24,7 @@ resource "aws_s3_bucket" "s3-bucket" {
                 "Service": "cloudtrail.amazonaws.com"
               },
               "Action": "s3:GetBucketAcl",
-              "Resource": "arn:aws:s3:::tf-test-trail-ucsf"
+              "Resource": "arn:aws:s3:::tf-test-trail"
           },
           {
               "Sid": "AWSCloudTrailWrite",
@@ -33,7 +33,7 @@ resource "aws_s3_bucket" "s3-bucket" {
                 "Service": "cloudtrail.amazonaws.com"
               },
               "Action": "s3:PutObject",
-              "Resource": "arn:aws:s3:::tf-test-trail-ucsf/*",
+              "Resource": "arn:aws:s3:::tf-test-trail/*",
               "Condition": {
                   "StringEquals": {
                       "s3:x-amz-acl": "bucket-owner-full-control"

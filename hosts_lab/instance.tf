@@ -3,8 +3,8 @@ resource "aws_key_pair" "hostkey" {
 }
 
 resource "aws_security_group" "host_security_group" {
-  name = "ucsf group"
-  description = "UCSF Group for Inbound Connections to limited ports"
+  name = "group"
+  description = "Goup for Inbound Connections to limited ports"
 
   ingress {
     from_port = 0
@@ -43,7 +43,7 @@ data "aws_ami" "amz_linux" {
   }
 }
 
-resource "aws_instance" "ucsf-instance" {
+resource "aws_instance" "instance" {
   ami = "${data.aws_ami.amz_linux.id}"
   instance_type = "t1.micro"
   key_name = "${aws_key_pair.hostkey.key_name}"
@@ -54,7 +54,7 @@ resource "aws_instance" "ucsf-instance" {
       type = "ssh"
       user = "ec2-user"
       private_key = "${file("${var.PRIV_KEY}")}"
-      host = "${aws_instance.ucsf-instance.public_ip}"
+      host = "${aws_instance.instance.public_ip}"
     }
     inline = [
       "sudo yum install nginx -y"

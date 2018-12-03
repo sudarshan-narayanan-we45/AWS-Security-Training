@@ -1,12 +1,12 @@
 //SNS to send the security alert to cloudwatch alarm
 
-resource "aws_sns_topic" "ucsf_security_alerts" {
-  name         = "ucsf-security-alerts-topic"
+resource "aws_sns_topic" "security_alerts" {
+  name         = "security-alerts-topic"
   display_name = "Security Alerts"
 }
 
 resource "aws_sns_topic_subscription" "security_alerts_to_sqs" {
-  topic_arn = "${aws_sns_topic.ucsf_security_alerts.arn}"
+  topic_arn = "${aws_sns_topic.security_alerts.arn}"
   protocol  = "sqs"
   endpoint  = "${aws_sqs_queue.security_alerts.arn}"
 }
@@ -29,7 +29,7 @@ resource "aws_sqs_queue_policy" "sns_to_sqs" {
     "Resource":"${aws_sqs_queue.security_alerts.arn}",
     "Condition":{
       "ArnEquals":{
-        "aws:SourceArn":"${aws_sns_topic.ucsf_security_alerts.arn}"
+        "aws:SourceArn":"${aws_sns_topic.security_alerts.arn}"
       }
     }
   }

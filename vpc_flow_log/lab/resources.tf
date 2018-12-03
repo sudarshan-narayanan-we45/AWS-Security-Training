@@ -1,16 +1,16 @@
-resource "aws_flow_log" "ucsf_aws_vpc_flow_log" {
+resource "aws_flow_log" "aws_vpc_flow_log" {
   iam_role_arn = "${aws_iam_role.vpc_flow_iam_role.arn}"
   log_destination = "${aws_cloudwatch_log_group.vpc_flow_cloud_watch_group.arn}"
   traffic_type = "ALL",
-  vpc_id = "${aws_vpc.ucsf-vpc.id}"
+  vpc_id = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_cloudwatch_log_group" "vpc_flow_cloud_watch_group" {
-  name = "ucsf-aws-vpc-flow-log"
+  name = "aws-vpc-flow-log"
 }
 
 resource "aws_iam_role" "vpc_flow_iam_role" {
-  name = "ucsf_flowlogsRole"
+  name = "flowlogsRole"
 
   assume_role_policy = <<EOF
 {
@@ -29,8 +29,8 @@ resource "aws_iam_role" "vpc_flow_iam_role" {
 EOF
 }
 
-resource "aws_iam_role_policy" "ucsf_vpc_flow_log_iam_policy" {
-  name = "ucsf_flowlogsRolePolicy"
+resource "aws_iam_role_policy" "vpc_flow_log_iam_policy" {
+  name = "flowlogsRolePolicy"
   role = "${aws_iam_role.vpc_flow_iam_role.id}"
 
   policy = <<EOF

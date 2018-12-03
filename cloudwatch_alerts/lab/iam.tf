@@ -1,7 +1,7 @@
 //role for allow cloudtrail to send data into cloudwatch
 
-resource "aws_iam_role" "ucsf_cloudtrail_role" {
-  name = "ucsf_cloudtrail_role"
+resource "aws_iam_role" "cloudtrail_role" {
+  name = "cloudtrail_role"
 
   assume_role_policy = <<EOF
 {
@@ -19,9 +19,9 @@ resource "aws_iam_role" "ucsf_cloudtrail_role" {
 EOF
 }
 
-resource "aws_iam_role_policy" "ucsf_cloudtrail_policy" {
-  name = "ucsf_cloudtrail_policy"
-  role = "${aws_iam_role.ucsf_cloudtrail_role.id}"
+resource "aws_iam_role_policy" "cloudtrail_policy" {
+  name = "cloudtrail_policy"
+  role = "${aws_iam_role.cloudtrail_role.id}"
 
   policy = <<EOF
 {

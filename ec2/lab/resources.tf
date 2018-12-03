@@ -1,13 +1,13 @@
 # Define SSH key pair for our instances
 
-resource "tls_private_key" "ucsf_test_key" {
+resource "tls_private_key" "test_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
 resource "aws_key_pair" "generated_key" {
   key_name   = "${var.key_name}"
-  public_key = "${tls_private_key.ucsf_test_key.public_key_openssh}"
+  public_key = "${tls_private_key.test_key.public_key_openssh}"
 }
 
 
@@ -49,11 +49,11 @@ resource "aws_instance" "db" {
     type = "ssh"
     user = "ec2-user"
     agent = false
-    private_key = "${tls_private_key.ucsf_test_key.private_key_pem}"
+    private_key = "${tls_private_key.test_key.private_key_pem}"
     timeout = "10m"
     bastion_host = "${aws_instance.bastion_host.public_ip}"
     bastion_user = "ec2-user"
-    bastion_private_key = "${tls_private_key.ucsf_test_key.private_key_pem}"
+    bastion_private_key = "${tls_private_key.test_key.private_key_pem}"
   }
   provisioner "file" {
     source = "redis.conf"
@@ -95,7 +95,7 @@ resource "aws_instance" "wb" {
     type = "ssh"
     user = "ec2-user"
     agent = false
-    private_key = "${tls_private_key.ucsf_test_key.private_key_pem}"
+    private_key = "${tls_private_key.test_key.private_key_pem}"
     timeout = "10m"
   }
 

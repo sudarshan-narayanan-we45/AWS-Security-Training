@@ -79,24 +79,24 @@ data "aws_ami" "amz_linux" {
   }
 }
 
-resource "tls_private_key" "ucsf_test_key" {
+resource "tls_private_key" "test_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
 resource "aws_key_pair" "generated_key" {
   key_name   = "${var.key_name}"
-  public_key = "${tls_private_key.ucsf_test_key.public_key_openssh}"
+  public_key = "${tls_private_key.test_key.public_key_openssh}"
 }
 
 resource "local_file" "aws_key" {
-  content = "${tls_private_key.ucsf_test_key.private_key_pem}"
+  content = "${tls_private_key.test_key.private_key_pem}"
   filename = "aws_test.pem"
 }
 
 resource "aws_security_group" "host_security_group" {
-  name = "ucsf group"
-  description = "UCSF Group for Inbound Connections to limited ports"
+  name = "group"
+  description = "Group for Inbound Connections to limited ports"
 
   ingress {
     from_port = 0
@@ -136,7 +136,7 @@ resource "aws_instance" "test-host" {
     type = "ssh"
     user = "ec2-user"
     agent = false
-    private_key = "${tls_private_key.ucsf_test_key.private_key_pem}"
+    private_key = "${tls_private_key.test_key.private_key_pem}"
     timeout = "10m"
   }
   provisioner "remote-exec" {

@@ -2,18 +2,18 @@ provider "aws" {
   region     = "us-east-1"
 }
 
-resource "tls_private_key" "ucsf_test_key" {
+resource "tls_private_key" "test_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
 resource "aws_key_pair" "generated_key" {
-  key_name   = "ucsf_aws_lynis"
-  public_key = "${tls_private_key.ucsf_test_key.public_key_openssh}"
+  key_name   = "aws_lynis"
+  public_key = "${tls_private_key.test_key.public_key_openssh}"
 }
 
 resource "local_file" "aws_key" {
-  content = "${tls_private_key.ucsf_test_key.private_key_pem}"
+  content = "${tls_private_key.test_key.private_key_pem}"
   filename = "aws_test.pem"
 }
 
@@ -28,7 +28,7 @@ resource "aws_instance" "web" {
   	connection {
   		type = "ssh"
   		user = "ubuntu"
-  		private_key = "${tls_private_key.ucsf_test_key.private_key_pem}"
+  		private_key = "${tls_private_key.test_key.private_key_pem}"
   		host = "${aws_instance.web.public_ip}"
   	}
   	inline = [

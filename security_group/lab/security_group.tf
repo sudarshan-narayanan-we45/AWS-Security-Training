@@ -1,5 +1,5 @@
 
-resource "aws_security_group" "ucsf_securtiy_group" {
+resource "aws_security_group" "securtiy_group" {
   name        = "webserver"
   description = "Public HTTP + SSH"
 

@@ -12,16 +12,16 @@ resource "random_string" "random-bucket" {
 
 
 resource "aws_s3_bucket" "logs" {
-  bucket = "${random_string.log-bucket.result}-ucsf-site-logs"
+  bucket = "${random_string.log-bucket.result}-site-logs"
   acl = "log-delivery-write"
   force_destroy = true
 }
 
 resource "aws_s3_bucket" "static_app" {
-  bucket = "ucsf-static"
+  bucket = "static"
   acl    = "public-read"
   force_destroy = true
-  bucket = "${random_string.random-bucket.result}-ucsf-static"
+  bucket = "${random_string.random-bucket.result}-static"
 
   logging {
     target_bucket = "${aws_s3_bucket.logs.id}"
@@ -54,7 +54,7 @@ resource "aws_s3_bucket_object" "aws_site" {
 }
 
 
-resource "aws_s3_bucket_policy" "ucsf_cloud_trail_log_bucket_policy" {
+resource "aws_s3_bucket_policy" "cloud_trail_log_bucket_policy" {
   bucket = "${aws_s3_bucket.static_app.id}"
 
   policy = <<POLICY

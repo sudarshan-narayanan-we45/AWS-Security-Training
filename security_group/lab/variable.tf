@@ -17,5 +17,5 @@ variable "ami" {
 
 
 variable "key_name" {
-  default = "ucsf_security_group.pem"
+  default = "security_group.pem"
 }

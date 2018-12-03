@@ -1,9 +1,9 @@
 variable "bucket_prefix" {
-  default = "ucsf-logs-trails"
+  default = "logs-trails"
 }
 
 variable "trail_name" {
-  default = "ucsf-trail"
+  default = "demo-trail"
 }
 
 variable "example_vpc_cidr" {
@@ -31,7 +31,7 @@ variable "instance_user" {
 }
 
 variable "metric_name_space" {
-  default = "UCSFCloudTrailMetrics"
+  default = "CloudTrailMetrics"
 }
 
 
@@ -40,6 +40,6 @@ variable "aws_region" {
 }
 
 variable "key_name" {
-  default = "ucsf_cloudwatch_alert"
+  default = "cloudwatch_alert"
 }
 

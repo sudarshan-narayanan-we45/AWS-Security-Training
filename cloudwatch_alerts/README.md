@@ -30,7 +30,7 @@ An execution plan has been generated and is shown below.
 Resource actions are indicated with the following symbols:
   + create
 
-+ tls_private_key.ucsf_test_key
++ tls_private_key.test_key
       id:                                                                  <computed>
       algorithm:                                                           "RSA"
       ecdsa_curve:                                                         "P224"
@@ -55,10 +55,10 @@ Do you want to perform these actions?
  
 **cd** into  `/home/vagrant/Desktop/Labs/AWS-Security-Training/cloudwatch_alarm/lab`
 
-* Give permission for the `ucsf_cloudwatch.pem` file
+* Give permission for the `cloudwatch.pem` file
 
 ```commandline
-chmod 400 ucsf_cloudwatch.pem
+chmod 400 cloudwatch.pem
 ```
 
 ##### Step 5 :
@@ -71,10 +71,10 @@ chmod 400 ucsf_cloudwatch.pem
 
 * **cd** into  `/home/vagrant/Desktop/Labs/AWS-Security-Training/cloudwatch_alarm/lab`
 
-* Run `ssh -i ucsf_cloudwatch.pem ec2-user@<yourec2 instance public DNS>`
+* Run `ssh -i cloudwatch.pem ec2-user@<yourec2 instance public DNS>`
 
 ```commandline
-ssh -i ucsf_cloudwatch.pem ec2-user@<yourec2 instance public DNS>
+ssh -i cloudwatch.pem ec2-user@<yourec2 instance public DNS>
 ECDSA key fingerprint is SHA256:RI0dniMEy2SoWdwF2L3dNPBfkI2r85qa9fFZm6xrgo0.
 Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added 'ec2-18-212-10-166.compute-1.amazonaws.com,18.212.10.166' (ECDSA) to the list of known hosts.
@@ -111,15 +111,15 @@ Goto Terminal and type `exit` to exit from the ec2 server.
   There is no undo. Only 'yes' will be accepted to confirm.
 
   Enter a value: yes
-  aws_flow_log.ucsf_aws_vpc_flow_log: Destroying... (ID: fl-0213b696e3b6c5c4e)
-  aws_iam_role_policy.ucsf_vpc_flow_log_iam_policy: Destroying... (ID: ucsf_flowlogsRole:ucsf_flowlogsRolePolicy)
-  aws_iam_role_policy.ucsf_vpc_flow_log_iam_policy: Destruction complete after 1s
-  aws_flow_log.ucsf_aws_vpc_flow_log: Destruction complete after 4s
-  aws_iam_role.vpc_flow_iam_role: Destroying... (ID: ucsf_flowlogsRole)
-  aws_cloudwatch_log_group.vpc_flow_cloud_watch_group: Destroying... (ID: ucsf-aws-vpc-flow-log)
-  aws_vpc.ucsf-vpc: Destroying... (ID: vpc-0abd67f8f4ffe1199)
+  aws_flow_log.aws_vpc_flow_log: Destroying... (ID: fl-0213b696e3b6c5c4e)
+  aws_iam_role_policy.vpc_flow_log_iam_policy: Destroying... (ID: flowlogsRole:flowlogsRolePolicy)
+  aws_iam_role_policy.vpc_flow_log_iam_policy: Destruction complete after 1s
+  aws_flow_log.aws_vpc_flow_log: Destruction complete after 4s
+  aws_iam_role.vpc_flow_iam_role: Destroying... (ID: flowlogsRole)
+  aws_cloudwatch_log_group.vpc_flow_cloud_watch_group: Destroying... (ID: aws-vpc-flow-log)
+  aws_vpc.vpc: Destroying... (ID: vpc-0abd67f8f4ffe1199)
   aws_cloudwatch_log_group.vpc_flow_cloud_watch_group: Destruction complete after 2s
-  aws_vpc.ucsf-vpc: Destruction complete after 2s
+  aws_vpc.vpc: Destruction complete after 2s
   aws_iam_role.vpc_flow_iam_role: Destruction complete after 2s
 
   Destroy complete! Resources: 5 destroyed.  

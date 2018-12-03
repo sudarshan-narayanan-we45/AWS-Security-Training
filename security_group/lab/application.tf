@@ -1,11 +1,11 @@
-resource "tls_private_key" "ucsf_test_key" {
+resource "tls_private_key" "test_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
 resource "aws_key_pair" "ssh" {
   key_name   = "default"
-  public_key = "${tls_private_key.ucsf_test_key.public_key_openssh}"
+  public_key = "${tls_private_key.test_key.public_key_openssh}"
 }
 
 resource "aws_subnet" "public-subnet" {
@@ -29,7 +29,7 @@ resource "aws_instance" "web" {
   ami                    = "ami-2757f631"
   instance_type          = "t2.micro"
   key_name               = "${aws_key_pair.ssh.id}"
-  vpc_security_group_ids = [ "${aws_security_group.ucsf_securtiy_group.id}" ]
+  vpc_security_group_ids = [ "${aws_security_group.securtiy_group.id}" ]
   subnet_id = "${aws_subnet.public-subnet.id}"
   associate_public_ip_address = true
   source_dest_check = false
@@ -38,7 +38,7 @@ resource "aws_instance" "web" {
     connection {
       type = "ssh"
       user = "ubuntu"
-      private_key = "${tls_private_key.ucsf_test_key.private_key_pem}"
+      private_key = "${tls_private_key.test_key.private_key_pem}"
       timeout = "5m"
       agent = true
     }
