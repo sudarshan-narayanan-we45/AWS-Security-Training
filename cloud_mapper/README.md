@@ -19,7 +19,7 @@
 
 ##### Step 3:
 
-* Run `pipenv shell` to ativate the python virtualenv
+* Run `pipenv shell` to activate the python virtualenv
 
 
 ##### Step 4:
@@ -27,9 +27,9 @@
 * Run `python cloudmapper.py prepare --config config.json.demo --account demo`
 * Run `python cloudmapper.py webserver`
 
-This will run a local webserver at http://127.0.0.1:8000/
+This will run a local webserver on http://127.0.0.1:8000/
 
 
 ##### Step 5:
 
-Open browser and run `http://127.0.0.1:8000/` and check the details
+Open browser and access `http://127.0.0.1:8000/` to check the details
