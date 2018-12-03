@@ -1,6 +1,6 @@
 ## Amazon Inspector
 
->Using Amazon Inspector is an automated security assessment 
+>Amazon Inspector is an automated security assessment 
 service that helps improve the security and compliance of 
 applications deployed on AWS. Amazon Inspector automatically 
 assesses applications for exposure, vulnerabilities, 
@@ -25,10 +25,9 @@ cd  /home/vagrant/Desktop/Labs/AWS-Security-Training/inspector/lab
 * Run `terraform apply`
 * **Note:**
  
-1. Once you enter it will ask you to enter `key name` give any name you like, using same key we can ssh into the ec2 server.
+1. It will ask you to enter `key name` give any name you like, using same key we can ssh into the ec2 server.
 
-2. Once you press enter it will ask you a permission to do the action like `Do you want to perform these actions?`
-then type `yes` and press `enter` it will continues the rest of the actions.
+2. It will ask you for permission to perform actions (`Do you want to perform these actions?`). Type `yes` and press `enter` for it to continue with rest of the actions.
 
 ```commandline
 terraform apply
@@ -69,8 +68,7 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 ##### Step 5 :
  
  * Run `terraform destroy` to remove the EC2 and Inspector from the AWS.
- * **Note:** It will ask your permission to destroy the created EC2 and Inspector from the AWS `Do you really want to destroy all resources?` then type 'yes' then press `enter
- to continue the process. 
+ * **Note:** It will ask for your permission to destroy the created EC2 and Inspector from AWS (`Do you really want to destroy all resources?`). Type 'yes' then press `enter` to continue the process. 
   
  ```commandline
   

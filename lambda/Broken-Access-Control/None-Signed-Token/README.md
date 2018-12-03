@@ -36,7 +36,7 @@
 
 #### Step 6:
 
-* Open https://jwt.io/ and paste the token. Tamper the value in Payload section to 
+* Open https://jwt.io/ on the browser and paste the token. Tamper the value in Payload section to 
 
 
     {

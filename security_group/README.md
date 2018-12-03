@@ -24,10 +24,9 @@ For each security group, you add rules that control the inbound traffic to insta
 
 * **Note:**
  
-1. Once you enter it will ask you to enter `key name` give any name you like, using same key we can ssh into the ec2 server.
+1. It will ask you to enter `key name` give any name you like, using same key we can ssh into the ec2 server.
 
-2. Once you press enter it will ask you a permission to do the action like `Do you want to perform these actions?`
-then type `yes` and press `enter` it will continues the rest of the actions.
+2. It will ask you permissions to perform actions like (`Do you want to perform these actions?`). Type `yes` and press `enter` it will continues the rest of the actions.
 
 
 ```commandline
@@ -64,13 +63,13 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 ##### Step 4 :
 
-* Open AWS console in the browser and check the created `EC2` and check security group 
+* Open AWS console on the browser, check the created `EC2` instance(s) and check security group 
 
 ##### Step 5 :
  
- * Run `terraform destroy` to remove the EC2 and Security Group from the AWS.
+ * Run `terraform destroy` to remove EC2 and Security Group from AWS.
  
- **Note:** It will ask your permission to destroy the created EC2 from the AWS `Do you really want to destroy all resources?` then type 'yes' then press `enter
+ **Note:** It will ask your permission to destroy the created EC2 from AWS (`Do you really want to destroy all resources?`). Type 'yes' then press `enter`
  to continue the process. 
  
  ```commandline

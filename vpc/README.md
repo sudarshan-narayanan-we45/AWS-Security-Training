@@ -21,8 +21,8 @@
 
 * Run `terraform apply`
 
-* **Note:** Once you press enter it will ask you a permission to do the action like `Do you want to perform these actions?`
-then type `yes` and press `enter` it will continues the rest of the actions.
+* **Note:** It will ask you for permission to perform actions (`Do you want to perform these actions?`).
+Type `yes` and press `enter` it will continues the rest of the actions.
 
 ```commandline
 terraform apply
@@ -55,13 +55,13 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 ##### Step 4 :
 
-* Open AWS console in the browser and check the created `VPC`.
+* Open AWS console on the browser and check the created `VPC`.
 
 ##### Step 5 :
  
  * Run `terraform destroy` to remove the VCP from the AWS.
  
- * **Note:** It will ask your permission to destroy the created VPC from the AWS `Do you really want to destroy all resources?` then type 'yes' then press `enter
+ * **Note:** It will ask for your permission to destroy the created VPC from AWS (`Do you really want to destroy all resources?`). Type 'yes' then press `enter`
  to continue the process.
   
     ```commandline

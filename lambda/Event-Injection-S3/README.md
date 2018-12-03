@@ -45,9 +45,9 @@
 
 ##### Step 7:
 
-* Once the file has been uploaded, It will redirect to `/home/` .
+* Once the file has been uploaded, it will redirect to `/home/` .
 
-**Note:** Here will see all our uploaded Xml files. Please refresh the page if the file is not visible.
+**Note:** Here we see all our uploaded Xml files. Please refresh the page if the file is not visible.
 
 ![](img/upload-file-view.png)
 

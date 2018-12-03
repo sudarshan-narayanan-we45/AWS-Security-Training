@@ -1,4 +1,4 @@
-## Algorithm Confussion
+## Algorithm Confusion
 
 ##### Step 1:
 
@@ -9,7 +9,7 @@
 
 ##### Step 2:
 
-* open `http://sls-training-ui.s3-website-us-east-1.amazonaws.com/` to access the XML-Uploder application.
+* Open `http://sls-training-ui.s3-website-us-east-1.amazonaws.com/` to access the XML-Uploder application.
 
 ![](img/login-page.png)
 
