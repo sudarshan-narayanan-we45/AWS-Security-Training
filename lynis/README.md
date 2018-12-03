@@ -1,8 +1,8 @@
 ## Lynis
 
->Using Lynis we can Audit, System hardening, 
-compliance testing in the EC2 instance.It performs an 
-extensive health scan of your systems to support system 
+>Lynis performs Auditing, System hardening and
+compliance tests on an EC2 instance. It performs an 
+extensive health scan of the systems to support system 
 hardening and compliance testing. 
 
 
@@ -24,14 +24,12 @@ cd  /home/vagrant/Desktop/Labs/AWS-Security-Training/lynis/lab
 * Run `terraform apply`
 * **Note:**
  
-1. Once you enter it will ask you to enter `key name` 
-give any name you like, using same key we can ssh into 
+1. It will ask you to enter `key name`. Give any name you like, using same key we can ssh into 
 the ec2 server.
 
-2. Once you press enter it will ask you a permission 
-to do the action like `Do you want to perform these actions?`
-then type `yes` and press `enter` it will continues 
-the rest of the actions.
+2. It will ask you for permission 
+to perform actions (`Do you want to perform these actions?`).
+Type `yes` and press `enter`, it will continue with rest of the actions.
 
 ```commandline
 terraform apply
@@ -72,7 +70,7 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 ##### Step 5 :
  
  * Run `terraform destroy` to remove the EC2 from the AWS.
- * **Note:** It will ask your permission to destroy the created EC2 from the AWS `Do you really want to destroy all resources?` then type 'yes' then press `enter
+ * **Note:** It will ask your permission to destroy the created EC2 from AWS (`Do you really want to destroy all resources?`) Type 'yes' then press `enter`
  to continue the process. 
   
  ```commandline
