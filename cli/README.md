@@ -1,5 +1,5 @@
 ## Configuring AWS-Command Line Interface (CLI)
->Using AWS CLI we can control AWS multiple Services from 
+>Using AWS CLI we can control multiple AWS Services from 
 the command line.
 
 
@@ -19,7 +19,7 @@ the command line.
 
 ##### Step 3:
 
-**Note:** To Install AWS CLI Requires Python 2.6.5 or higher. And python pip is required. 
+**Note:**  AWS CLI requires python>=2.6.5 and python pip for installation. 
 
 * Run `pip install awscli`
 
@@ -36,7 +36,7 @@ aws-cli/1.16.18 Python/2.7.10 Darwin/18.0.0 botocore/1.12.8
 
 ##### Step 5 :
 
-To Interact with AWS we should configure AWS CLI . We should give our **AWS Access Key**, **AWS Secret KEY** and **Region**
+We should provide our **AWS Access Key**, **AWS Secret KEY** and **Region** to configure AWS CLI
 
 * Run `aws configure`
 
@@ -45,11 +45,11 @@ aws configure
 AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
 AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 Default region name [None]: us-west-2
-Default output format [None]: ENTER
+Default output format [None]: 
 ```
 
-This command is interactive, so the AWS CLI outputs lines of texts, prompting you to enter additional information. Enter each of your access keys in turn and press Enter. Then, enter a region name in the format shown, press Enter, and press Enter a final time to skip the output format setting.
+This command is interactive and prompts you to enter additional information. Enter your Access Key ID, Secret Access Key, Region Name and skip the Output Format using the ENTER Key allowing it to take the default value.
 
 
 
-**Note:** Now AWS CLI is ready to use.
+**Note:**  AWS CLI is now ready to use.
