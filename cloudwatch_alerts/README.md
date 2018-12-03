@@ -1,6 +1,6 @@
 ## AWS Cloudwatch Alarms
 
->Using Amazon Cloudwatch Alarms feature allows you to watch CloudWatch metrics and to receive notifications when the metrics fall outside of the levels (high or low thresholds) that you configure. You can attach multiple Alarms to each metric and each one can have multiple actions.
+> Amazon Cloudwatch Alarms allows you to watch CloudWatch metrics and receive notifications when the metrics fall outside of the threshold configured (high or low). You can attach multiple Alarms to each metric that can have multiple actions.
 
 
 ##### Step 1:
@@ -20,8 +20,7 @@
 
 * Run `terraform apply`
 
-**Note:** Once you press enter it will ask you a permission to do the action like `Do you want to perform these actions?`
-then type `yes` and press `enter` it will continues the rest of the actions.
+**Note:** Once you run the command, it will ask you for permission to perform actions (`Do you want to perform these actions?`). Type `yes` and press `enter`, it will continue with rest of the necessary actions.
 
 ```commandline
 terraform apply
@@ -55,7 +54,7 @@ Do you want to perform these actions?
  
 **cd** into  `/home/vagrant/Desktop/Labs/AWS-Security-Training/cloudwatch_alarm/lab`
 
-* Give permission for the `ucsf_cloudwatch.pem` file
+* Give necessary permission to `ucsf_cloudwatch.pem` file
 
 ```commandline
 chmod 400 ucsf_cloudwatch.pem
@@ -63,7 +62,7 @@ chmod 400 ucsf_cloudwatch.pem
 
 ##### Step 5 :
 
-* Open AWS console in the browser and check the created `Cloudwatch Alarms `.
+* Open AWS console on the browser and check the created `Cloudwatch Alarms `.
 
 ##### Step 6 :
 
@@ -90,19 +89,18 @@ https://aws.amazon.com/amazon-linux-2/
 ```
 
 ##### Step 7 :
-Open AWS console in the browser and check the created `Cloudwatch Alarms `. it will show a alarms
+Open AWS console on the browser and check the alarms created on `Cloudwatch Alarms `.
 
 
 ##### Step 8 :
-Goto Terminal and type `exit` to exit from the ec2 server.
+Go to Terminal and type `exit` to exit from the ec2 server.
 
 
 ##### Step 9 :
  
- * Run `terraform destroy` to remove the the related to the cloudwatch from the AWS.
+ * Run `terraform destroy` to remove services related to cloudwatch from AWS.
  
-* **Note:** It will ask your permission to destroy the created cloudwatch realated from the AWS `Do you really want to destroy all resources?` then type 'yes' then press `enter
- to continue the process.
+* **Note:** It will ask your permission to destroy cloudwatch realated services from AWS (`Do you really want to destroy all resources?`). Type 'yes' then press `enter` to continue the process.
   
  ```commandline 
  
