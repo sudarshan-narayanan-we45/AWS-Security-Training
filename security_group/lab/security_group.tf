@@ -1,6 +1,6 @@
 
 resource "aws_security_group" "securtiy_group" {
-  name        = "webserver"
+  name        = "webserver-${random_string.random_name.result}"
   description = "Public HTTP + SSH"
 
   ingress {

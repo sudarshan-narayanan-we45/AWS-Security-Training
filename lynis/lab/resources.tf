@@ -1,20 +1,22 @@
-provider "aws" {
-  region     = "us-east-1"
+resource "random_string" "random_name" {
+  length = 10
+  special = false
+  upper = false
 }
 
-resource "tls_private_key" "test_key" {
+resource "tls_private_key" "we45_test_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
 resource "aws_key_pair" "generated_key" {
-  key_name   = "aws_lynis"
-  public_key = "${tls_private_key.test_key.public_key_openssh}"
+  key_name   = "we45_aws_lynis"
+  public_key = "${tls_private_key.we45_test_key.public_key_openssh}"
 }
 
 resource "local_file" "aws_key" {
-  content = "${tls_private_key.test_key.private_key_pem}"
-  filename = "aws_test.pem"
+  content = "${tls_private_key.we45_test_key.private_key_pem}"
+  filename = "we45_aws_lynis.pem"
 }
 
 resource "aws_instance" "web" {
@@ -28,7 +30,7 @@ resource "aws_instance" "web" {
   	connection {
   		type = "ssh"
   		user = "ubuntu"
-  		private_key = "${tls_private_key.test_key.private_key_pem}"
+  		private_key = "${tls_private_key.we45_test_key.private_key_pem}"
   		host = "${aws_instance.web.public_ip}"
   	}
   	inline = [

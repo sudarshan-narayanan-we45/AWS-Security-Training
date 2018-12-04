@@ -3,7 +3,7 @@ resource "aws_internet_gateway" "gateway" {
 
 
   tags {
-    Name = "VPC Gateway"
+    Name = "VPC Gateway-${random_string.random_name.result}"
   }
 }
 
@@ -18,6 +18,6 @@ resource "aws_route_table" "public-route" {
   }
 
   tags {
-    Name = "Public Subnet Route"
+    Name = "Public Subnet Route-${random_string.random_name.result}"
   }
 }

@@ -6,6 +6,7 @@ resource "random_string" "bucket_name" {
 
 resource "aws_s3_bucket" "policy_bucket" {
   bucket = "${random_string.bucket_name.result}-policy-bucket"
+  force_destroy = true
 }
 
 variable "public_host" {}

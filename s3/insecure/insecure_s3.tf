@@ -7,4 +7,5 @@ resource "random_string" "bucket_name" {
 resource "aws_s3_bucket" "public_bucket" {
   bucket = "${random_string.bucket_name.result}-bucket.we45.com"
   acl = "public-read"
+  force_destroy = true
 }

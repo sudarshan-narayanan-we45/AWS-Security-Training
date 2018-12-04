@@ -18,7 +18,6 @@ resource "aws_s3_bucket" "logs" {
 }
 
 resource "aws_s3_bucket" "static_app" {
-  bucket = "static"
   acl    = "public-read"
   force_destroy = true
   bucket = "${random_string.random-bucket.result}-static"

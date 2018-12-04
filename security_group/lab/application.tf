@@ -1,20 +1,25 @@
-resource "tls_private_key" "test_key" {
+resource "random_string" "random_name" {
+  length = 10
+  special = false
+  upper = false
+}
+
+resource "tls_private_key" "we45_test_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
 resource "aws_key_pair" "ssh" {
-  key_name   = "default"
-  public_key = "${tls_private_key.test_key.public_key_openssh}"
+  key_name   = "security_group"
+  public_key = "${tls_private_key.we45_test_key.public_key_openssh}"
 }
 
 resource "aws_subnet" "public-subnet" {
   cidr_block = "${var.public_subnet_cidr}"
   vpc_id = "${aws_vpc.default.id}"
-  availability_zone = "us-east-1a"
 
   tags {
-    Name = "Public Subnet"
+    Name = "Public Subnet-${random_string.random_name.result}"
   }
 }
 
@@ -38,7 +43,7 @@ resource "aws_instance" "web" {
     connection {
       type = "ssh"
       user = "ubuntu"
-      private_key = "${tls_private_key.test_key.private_key_pem}"
+      private_key = "${tls_private_key.we45_test_key.private_key_pem}"
       timeout = "5m"
       agent = true
     }

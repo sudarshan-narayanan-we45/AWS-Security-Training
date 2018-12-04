@@ -4,6 +4,6 @@ resource "aws_vpc" "default" {
   enable_dns_hostnames = true
 
   tags {
-    Name = "aws-test-vpc"
+    Name = "we45-aws-test-vpc-${random_string.random_name.result}"
   }
 }
