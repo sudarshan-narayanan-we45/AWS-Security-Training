@@ -24,9 +24,8 @@ resource "local_file" "aws_key" {
 resource "aws_instance" "inspector" {
 
   tags {
-    Name = "aws-inspector-instance"
+    Name = "aws-inspector-instance-${random_string.random_name.result}"
   }
-
   ami           = "ami-2757f631"
   instance_type = "t2.micro"
   key_name   = "${aws_key_pair.generated_key.key_name}"

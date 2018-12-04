@@ -57,11 +57,20 @@ cd  /home/vagrant/Desktop/Labs/AWS-Security-Training/inspector/lab
 ##### Step 4:
 
 * Run `terraform apply`
-    1. It will ask a permission to do the actions type `yes` and press enter to continue
+    
+    1. It will ask you to enter **Region**
+    2. It will ask a permission to do the actions type `yes` and press enter to continue
+    
 
 ```commandline
 root@ubuntu:~/Desktop/Labs/AWS-Security-Training/inspector/lab# terraform apply
+provider.aws.region
+  The region where AWS operations will take place. Examples
+  are us-east-1, us-west-2, etc.
 
+  Default: us-east-1
+  Enter a value: 
+  
 An execution plan has been generated and is shown below.
 Resource actions are indicated with the following symbols:
   + create
