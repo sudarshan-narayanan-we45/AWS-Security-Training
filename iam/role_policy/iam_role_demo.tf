@@ -61,7 +61,9 @@ output "aws_iam_role_profile_name" {
   value = "Role: ${aws_iam_role.tes_role.arn}, Profile: ${aws_iam_instance_profile.test_profile.arn}"
 }
 
-variable "key_name" {}
+variable "key_name" {
+  default = "we45_iam_role_policy"
+}
 
 data "aws_ami" "amz_linux" {
   most_recent = true
@@ -79,19 +81,19 @@ data "aws_ami" "amz_linux" {
   }
 }
 
-resource "tls_private_key" "test_key" {
+resource "tls_private_key" "we45_test_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
 resource "aws_key_pair" "generated_key" {
   key_name   = "${var.key_name}"
-  public_key = "${tls_private_key.test_key.public_key_openssh}"
+  public_key = "${tls_private_key.we45_test_key.public_key_openssh}"
 }
 
 resource "local_file" "aws_key" {
-  content = "${tls_private_key.test_key.private_key_pem}"
-  filename = "aws_test.pem"
+  content = "${tls_private_key.we45_test_key.private_key_pem}"
+  filename = "we45_iam_role_policy.pem"
 }
 
 resource "aws_security_group" "host_security_group" {
@@ -136,7 +138,7 @@ resource "aws_instance" "test-host" {
     type = "ssh"
     user = "ec2-user"
     agent = false
-    private_key = "${tls_private_key.test_key.private_key_pem}"
+    private_key = "${tls_private_key.we45_test_key.private_key_pem}"
     timeout = "10m"
   }
   provisioner "remote-exec" {
