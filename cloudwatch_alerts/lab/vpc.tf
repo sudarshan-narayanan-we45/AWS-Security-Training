@@ -4,6 +4,9 @@ resource "aws_vpc" "cloudwatch_vpc" {
   cidr_block           = "${var.example_vpc_cidr}"
   enable_dns_support   = true
   enable_dns_hostnames = true
+  tags {
+    Name = "we45-VPC"
+  }
 }
 
 resource "aws_internet_gateway" "gateway" {

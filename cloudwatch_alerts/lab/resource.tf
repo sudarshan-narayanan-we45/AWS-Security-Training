@@ -29,7 +29,7 @@ resource "aws_instance" "web_app" {
     volume_size = "${var.root_vol_size}"
   }
   tags {
-    Name = "WebApp"
+    Name = "WebApp-${random_string.random_name.result}"
   }
   user_data = <<EOF
 #!/bin/bash

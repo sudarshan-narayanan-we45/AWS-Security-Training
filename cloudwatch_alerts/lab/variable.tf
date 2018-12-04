@@ -1,9 +1,9 @@
 variable "bucket_prefix" {
-  default = "logs-trails"
+  default = "we45-log-cloudtrails"
 }
 
 variable "trail_name" {
-  default = "demo-trail"
+  default = "we45-demo-cloud-trail"
 }
 
 variable "example_vpc_cidr" {
@@ -31,15 +31,14 @@ variable "instance_user" {
 }
 
 variable "metric_name_space" {
-  default = "CloudTrailMetrics"
+  default = "we45-CloudTrailMetrics"
 }
 
 
-variable "aws_region" {
-  default = "us-east-1"
-}
+//variable "aws_region" {
+//}
 
 variable "key_name" {
-  default = "cloudwatch_alert"
+  default = "we45_cloudwatch"
 }
 

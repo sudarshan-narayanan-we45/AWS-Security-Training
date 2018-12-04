@@ -3,7 +3,6 @@
 resource "aws_s3_bucket" "cloud_trail_log_bucket" {
   bucket_prefix = "${var.bucket_prefix}"
   acl           = "private"
-  region        = "${var.aws_region}"
   force_destroy = true
 }
 
@@ -20,7 +19,6 @@ resource "aws_s3_bucket_policy" "cloud_trail_log_bucket_policy" {
       "Principal": {
         "Service": [
           "cloudtrail.amazonaws.com",
-          "logs.${var.aws_region}.amazonaws.com",
           "lambda.amazonaws.com"
           ]
         },
@@ -32,8 +30,7 @@ resource "aws_s3_bucket_policy" "cloud_trail_log_bucket_policy" {
       "Effect": "Allow",
       "Principal": {
         "Service": [
-          "cloudtrail.amazonaws.com",
-          "logs.${var.aws_region}.amazonaws.com"
+          "cloudtrail.amazonaws.com"
         ]
       },
       "Action": "s3:PutObject",

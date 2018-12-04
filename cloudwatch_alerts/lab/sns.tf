@@ -1,7 +1,7 @@
 //SNS to send the security alert to cloudwatch alarm
 
 resource "aws_sns_topic" "security_alerts" {
-  name         = "security-alerts-topic"
+  name         = "security-alerts-topic-${random_string.random_name.result}"
   display_name = "Security Alerts"
 }
 
@@ -12,7 +12,7 @@ resource "aws_sns_topic_subscription" "security_alerts_to_sqs" {
 }
 
 resource "aws_sqs_queue" "security_alerts" {
-  name = "security-alerts-${var.aws_region}"
+  name = "security-alerts-${random_string.random_name.result}"
 }
 
 resource "aws_sqs_queue_policy" "sns_to_sqs" {

@@ -1,7 +1,7 @@
 //Cloudtrial Setup
 
 resource "aws_cloudtrail" "cloudtrail" {
-  name                          = "${var.trail_name}"
+  name                          = "${var.trail_name}-${random_string.random_name.result}"
   s3_bucket_name                = "${aws_s3_bucket.cloud_trail_log_bucket.id}"
   s3_key_prefix                 = "${var.trail_name}"
   include_global_service_events = true

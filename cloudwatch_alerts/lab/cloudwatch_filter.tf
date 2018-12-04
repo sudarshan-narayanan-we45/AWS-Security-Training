@@ -2,19 +2,19 @@
 
 //Root User login alarm
 resource "aws_cloudwatch_log_metric_filter" "root_login" {
-  name           = "root-access"
+  name           = "root-access-${random_string.random_name.result}"
   pattern        = "{$.userIdentity.type = Root}"
   log_group_name = "${aws_cloudwatch_log_group.cloudtrail_log.name}"
 
   metric_transformation {
-    name      = "RootAccessCount"
+    name      = "RootAccessCount-${random_string.random_name.result}"
     namespace = "${var.metric_name_space}"
     value     = "1"
   }
 }
 
 resource "aws_cloudwatch_metric_alarm" "root_login" {
-  alarm_name          = "root-access-${var.aws_region}"
+  alarm_name          = "root-access-${random_string.random_name.result}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
   metric_name         = "RootAccessCount"
@@ -28,19 +28,19 @@ resource "aws_cloudwatch_metric_alarm" "root_login" {
 
 //Securitygroup changes alarm
 resource "aws_cloudwatch_log_metric_filter" "security_group_change" {
-  name           = "security-group-changes"
+  name           = "security-group-changes-${random_string.random_name.result}"
   pattern        = "{ $.eventName = AuthorizeSecurityGroup* || $.eventName = RevokeSecurityGroup* || $.eventName = CreateSecurityGroup || $.eventName = DeleteSecurityGroup }"
   log_group_name = "${aws_cloudwatch_log_group.cloudtrail_log.name}"
 
   metric_transformation {
-    name      = "SecurityGroupChanges"
+    name      = "SecurityGroupChanges-${random_string.random_name.result}"
     namespace = "${var.metric_name_space}"
     value     = "1"
   }
 }
 
 resource "aws_cloudwatch_metric_alarm" "security_group_change" {
-  alarm_name          = "security-group-changes-${var.aws_region}"
+  alarm_name          = "security-group-changes-${random_string.random_name.result}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
   metric_name         = "SecurityGroupChanges"
@@ -54,7 +54,7 @@ resource "aws_cloudwatch_metric_alarm" "security_group_change" {
 
 //Iam changes alarm
 resource "aws_cloudwatch_log_metric_filter" "iam_change" {
-  name           = "iam-changes"
+  name           = "iam-changes-${random_string.random_name.result}"
   pattern        = "{$.eventSource = iam.* && $.eventName != Get* && $.eventName != List*}"
   log_group_name = "${aws_cloudwatch_log_group.cloudtrail_log.name}"
 
@@ -66,7 +66,7 @@ resource "aws_cloudwatch_log_metric_filter" "iam_change" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "iam_change" {
-  alarm_name          = "iam-changes-${var.aws_region}"
+  alarm_name          = "iam-changes-${random_string.random_name.result}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
   metric_name         = "IamChanges"
