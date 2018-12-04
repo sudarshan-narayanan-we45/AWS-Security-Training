@@ -22,18 +22,45 @@ cd  /home/vagrant/Desktop/Labs/AWS-Security-Training/inspector/lab
 ```
 ##### Step 3:
 
-* Run `terraform apply`
-* **Note:**
- 
-1. It will ask you to enter `key name` give any name you like, using same key we can ssh into the ec2 server.
+* Run `terraform init`
 
-2. It will ask you for permission to perform actions (`Do you want to perform these actions?`). Type `yes` and press `enter` for it to continue with rest of the actions.
+    ```commandline
+    root@ubuntu:~/Desktop/Labs/AWS-Security-Training/inspector/lab# terraform init
+    
+    Initializing provider plugins...
+    
+    The following providers do not have any version constraints in configuration,
+    so the latest version was installed.
+    
+    To prevent automatic upgrades to new major versions that may contain breaking
+    changes, it is recommended to add version = "..." constraints to the
+    corresponding provider blocks in configuration, with the constraint strings
+    suggested below.
+    
+    * provider.aws: version = "~> 1.49"
+    * provider.local: version = "~> 1.1"
+    * provider.tls: version = "~> 1.2"
+    
+    Terraform has been successfully initialized!
+    
+    You may now begin working with Terraform. Try running "terraform plan" to see
+    any changes that are required for your infrastructure. All Terraform commands
+    should now work.
+    
+    If you ever set or change modules or backend configuration for Terraform,
+    rerun this command to reinitialize your working directory. If you forget, other
+    commands will detect it and remind you to do so if necessary.
+    
+    ```
+
+
+##### Step 4:
+
+* Run `terraform apply`
+    1. It will ask a permission to do the actions type `yes` and press enter to continue
 
 ```commandline
-terraform apply
-
-var.key_name
-  Enter a value:ucsf_ec2_instance
+root@ubuntu:~/Desktop/Labs/AWS-Security-Training/inspector/lab# terraform apply
 
 An execution plan has been generated and is shown below.
 Resource actions are indicated with the following symbols:
@@ -41,24 +68,45 @@ Resource actions are indicated with the following symbols:
 
 Terraform will perform the following actions:
 
-  + aws_vpc.ucsf-vpc
-      id:                               <computed>
-      arn:                              <computed>
-      assign_generated_ipv6_cidr_block: "false"
-      cidr_block:                       "10.0.0.0/16"
+  + aws_inspector_assessment_target.test-target
+      id:                                    <computed>
+      arn:                                   <computed>
+      name:                                  "inspector-assessment"
+      resource_group_arn:                    "${aws_inspector_resource_group.test-group.arn}"
 
+  + aws_inspector_assessment_template.test-template
+      id:                                    <computed>
+      arn:                                   <computed>
+      duration:                              "3600"
+      name:                                  "test-template"
+      rules_package_arns.#:                  "1"
+      rules_package_arns.2467963249:         "arn:aws:inspector:us-east-1:316112463485:rulespackage/0-PmNV0Tcd"
+      target_arn:                            "${aws_inspector_assessment_target.test-target.arn}"
+
+  + aws_inspector_resource_group.test-group
+      id:                                    <computed>
+      arn:                                   <computed>
+      tags.%:                                "2"
+      tags.Env:                              "test-group"
+      tags.Name:                             "aws-inspector-instance"
+
+Plan: 8 to add, 0 to change, 0 to destroy.
 
 Do you want to perform these actions?
   Terraform will perform the actions described above.
   Only 'yes' will be accepted to approve.
 
   Enter a value: yes
-  
-  
-aws_vpc.ucsf-vpc: Creating...
-  arn:                              "" => "<computed>"
 
-Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+tls_private_key.inspector_key: Creating...
+  algorithm:                  "" => "RSA"
+  ecdsa_curve:                "" => "P224"
+  private_key_pem:            "" => "<computed>"
+  public_key_fingerprint_md5: "" => "<computed>"
+  public_key_openssh:         "" => "<computed>"
+  public_key_pem:             "" => "<computed>"
+  rsa_bits:                   "" => "4096"
+
 ```
 
 ##### Step 4 :

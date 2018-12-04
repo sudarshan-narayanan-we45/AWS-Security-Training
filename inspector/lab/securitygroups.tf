@@ -1,5 +1,6 @@
+
 resource "aws_security_group" "allow_ssh" {
-  name        = "allow_ssh"
+  name        = "allow_ssh-${random_string.random_name.result}"
   description = "Allow all ssh traffic"
 
   ingress {

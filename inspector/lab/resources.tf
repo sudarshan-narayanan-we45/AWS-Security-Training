@@ -1,5 +1,8 @@
-provider "aws" {
-  region     = "us-east-1"
+
+resource "random_string" "random_name" {
+  length = 10
+  special = false
+  upper = false
 }
 
 resource "tls_private_key" "inspector_key" {
@@ -8,13 +11,13 @@ resource "tls_private_key" "inspector_key" {
 }
 
 resource "aws_key_pair" "generated_key" {
-  key_name   = "aws_inspector"
+  key_name   = "we45_aws_inspector"
   public_key = "${tls_private_key.inspector_key.public_key_openssh}"
 }
 
 resource "local_file" "aws_key" {
   content = "${tls_private_key.inspector_key.private_key_pem}"
-  filename = "aws_inspector_test.pem"
+  filename = "we45_aws_inspector.pem"
 }
 
 
