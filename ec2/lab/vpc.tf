@@ -4,6 +4,6 @@ resource "aws_vpc" "stack-example-vpc" {
   enable_dns_hostnames = true
 
   tags {
-    Name = "stack-example-vpc"
+    Name = "stack-example-vpc-${random_string.random_name.result}"
   }
 }

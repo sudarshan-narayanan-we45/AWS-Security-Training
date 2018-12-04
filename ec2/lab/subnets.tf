@@ -1,10 +1,9 @@
 resource "aws_subnet" "public-subnet" {
   cidr_block = "${var.public_subnet_cidr}"
   vpc_id = "${aws_vpc.stack-example-vpc.id}"
-  availability_zone = "us-east-1a"
 
   tags {
-    Name = "Public Subnet"
+    Name = "Public Subnet - ${random_string.random_name.result}"
   }
 }
 
@@ -16,10 +15,9 @@ resource "aws_route_table_association" "public-subnet" {
 resource "aws_subnet" "private-subnet" {
   cidr_block = "${var.private_subnet_cidr}"
   vpc_id = "${aws_vpc.stack-example-vpc.id}"
-  availability_zone = "us-east-1b"
 
   tags {
-    Name = "Private Subnet"
+    Name = "Private Subnet - ${random_string.random_name.result}"
   }
 }
 
