@@ -1,6 +1,6 @@
 resource "aws_inspector_resource_group" "test-group" {
   tags {
-    Name = "${aws_instance.inspector.tags.Name}"
+    Name = "we45-inspector-group-${random_string.random_name.result}"
     Env  = "test-group"
   }
 }
