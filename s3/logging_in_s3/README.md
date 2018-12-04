@@ -18,6 +18,40 @@ cd  /home/vagrant/Desktop/Labs/AWS-Security-Training/s3/logging_in_s3/lab
 ```
 ##### Step 3:
 
+* Run `terraform init`
+
+```commandline
+root@ubuntu:~/Desktop/Labs/AWS-Security-Training/s3/logging_in_s3/lab# terraform init
+
+Initializing provider plugins...
+- Checking for available provider plugins on https://releases.hashicorp.com...
+- Downloading plugin for provider "random" (2.0.0)...
+
+The following providers do not have any version constraints in configuration,
+so the latest version was installed.
+
+To prevent automatic upgrades to new major versions that may contain breaking
+changes, it is recommended to add version = "..." constraints to the
+corresponding provider blocks in configuration, with the constraint strings
+suggested below.
+
+* provider.aws: version = "~> 1.49"
+* provider.random: version = "~> 2.0"
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+
+```
+
+##### Step 4:
+
 * Run `terraform apply`
 
 ```commandline
@@ -37,11 +71,11 @@ aws_vpc.ucsf-vpc: Creating...
 Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 ```
 
-##### Step 4 :
+##### Step 5 :
 
 * Open the link shown as an output in the terminal on the browser.
 
-##### Step 5 :
+##### Step 6 :
  
  * Run `terraform destroy` to remove the S3 from the AWS.
  * **Note:** It will ask your permission to destroy the created EC2 from AWS (`Do you really want to destroy all resources?`). Type 'yes' and press `enter`
