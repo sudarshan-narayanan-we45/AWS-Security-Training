@@ -7,11 +7,11 @@ resource "aws_flow_log" "aws_vpc_flow_log" {
 }
 
 resource "aws_cloudwatch_log_group" "vpc_flow_cloud_watch_group" {
-  name = "aws-vpc-flow-log"
+  name = "aws-vpc-flow-log-${random_string.random_name.result}"
 }
 
 resource "aws_iam_role" "vpc_flow_iam_role" {
-  name = "flowlogsRole"
+  name = "flowlogsRole-${random_string.random_name.result}"
 
   assume_role_policy = <<EOF
 {
@@ -31,7 +31,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "vpc_flow_log_iam_policy" {
-  name = "flowlogsRolePolicy"
+  name = "flowlogsRolePolicy-${random_string.random_name.result}"
   role = "${aws_iam_role.vpc_flow_iam_role.id}"
 
   policy = <<EOF

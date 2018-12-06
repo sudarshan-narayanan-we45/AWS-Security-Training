@@ -30,5 +30,4 @@ resource "aws_security_group" "securtiy_group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  vpc_id = "${aws_vpc.default.id}"
 }

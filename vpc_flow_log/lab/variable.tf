@@ -13,5 +13,5 @@ variable "ami" {
 
 
 variable "key_name" {
-  default = "security_group.pem"
+  default = "we45_vpc_flow_log.pem"
 }

@@ -10,7 +10,7 @@ resource "tls_private_key" "we45_test_key" {
 }
 
 resource "aws_key_pair" "ssh" {
-  key_name   = "security_group"
+  key_name   = "we45_vpc_flow_log"
   public_key = "${tls_private_key.we45_test_key.public_key_openssh}"
 }
 
@@ -33,7 +33,7 @@ resource "aws_route_table_association" "public-subnet" {
 resource "aws_instance" "web" {
   ami                    = "ami-2757f631"
   instance_type          = "t2.micro"
-  key_name               = "${aws_key_pair.ssh.id}"
+  key_name               = "${aws_key_pair.ssh.key_name}"
   vpc_security_group_ids = [ "${aws_security_group.securtiy_group.id}" ]
   subnet_id = "${aws_subnet.public-subnet.id}"
   associate_public_ip_address = true
@@ -53,6 +53,11 @@ resource "aws_instance" "web" {
       "sudo apt-get install nginx -y"
     ]
   }
+}
+
+resource "local_file" "aws_key" {
+  content = "${tls_private_key.we45_test_key.private_key_pem}"
+  filename = "we45_vpc_flow_log.pem"
 }
 
 output "web_public_dns" {
