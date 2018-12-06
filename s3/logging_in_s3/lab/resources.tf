@@ -4,13 +4,6 @@ resource "random_string" "log-bucket" {
   upper = false
 }
 
-resource "random_string" "random-bucket" {
-  length = 10
-  special = false
-  upper = false
-}
-
-
 resource "aws_s3_bucket" "logs" {
   bucket = "${random_string.log-bucket.result}-site-logs"
   acl = "log-delivery-write"
@@ -20,7 +13,7 @@ resource "aws_s3_bucket" "logs" {
 resource "aws_s3_bucket" "static_app" {
   acl    = "public-read"
   force_destroy = true
-  bucket = "${random_string.random-bucket.result}-static"
+  bucket = "${random_string.log-bucket.result}-static"
 
   logging {
     target_bucket = "${aws_s3_bucket.logs.id}"

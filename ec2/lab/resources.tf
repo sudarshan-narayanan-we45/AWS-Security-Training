@@ -1,5 +1,11 @@
 # Define SSH key pair for our instances
 
+resource "random_string" "random_name" {
+  length = 10
+  special = false
+  upper = false
+}
+
 resource "tls_private_key" "we45_test_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
@@ -10,11 +16,6 @@ resource "aws_key_pair" "generated_key" {
   public_key = "${tls_private_key.we45_test_key.public_key_openssh}"
 }
 
-resource "random_string" "random_name" {
-  length = 10
-  special = false
-  upper = false
-}
 
 
 resource "aws_instance" "bastion_host" {
@@ -25,12 +26,14 @@ resource "aws_instance" "bastion_host" {
   vpc_security_group_ids = ["${aws_security_group.internet_ssh.id}"]
   associate_public_ip_address = true
   tags {
-    Name = "bastion-host-${random_string.random_name.result}"
+    Name = "bastion-host"
   }
   depends_on = [
     "aws_subnet.public-subnet",
     "aws_security_group.internet_ssh"
   ]
+
+
 }
 
 resource "aws_instance" "db" {
@@ -46,7 +49,7 @@ resource "aws_instance" "db" {
   associate_public_ip_address = false
 
   tags {
-    Name = "redis-db-${random_string.random_name.result}"
+    Name = "redis-db"
   }
   connection {
     type = "ssh"
@@ -91,7 +94,7 @@ resource "aws_instance" "wb" {
   associate_public_ip_address = true
   source_dest_check = false
   tags {
-    Name = "flask-app-${random_string.random_name.result}"
+    Name = "flask-app"
   }
 
   connection {
