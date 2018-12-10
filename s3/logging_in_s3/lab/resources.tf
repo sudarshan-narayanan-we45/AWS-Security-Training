@@ -17,22 +17,12 @@ resource "aws_s3_bucket" "static_app" {
 
   logging {
     target_bucket = "${aws_s3_bucket.logs.id}"
-    target_prefix = "${var.site_name}/"
+    target_prefix = "we45-${random_string.log-bucket.result}/"
   }
 
   website {
     index_document = "index.html"
     error_document = "index.html"
-    routing_rules = <<EOF
-    [{
-        "Condition": {
-            "KeyPrefixEquals": "docs/"
-        },
-        "Redirect": {
-            "ReplaceKeyPrefixWith": "documents/"
-        }
-    }]
-    EOF
 
   }
   depends_on = ["aws_s3_bucket.logs"]
@@ -46,25 +36,22 @@ resource "aws_s3_bucket_object" "aws_site" {
 }
 
 
-resource "aws_s3_bucket_policy" "cloud_trail_log_bucket_policy" {
+resource "aws_s3_bucket_policy" "we45_s3_bucket_policy" {
   bucket = "${aws_s3_bucket.static_app.id}"
 
-  policy = <<POLICY
+  policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "PublicReadForGetTestBucketObjects",
+      "Sid": "PublicReadGetObject",
       "Effect": "Allow",
-      "Principal": {
-        "AWS": "*"
-      },
+      "Principal": "*",
       "Action": "s3:GetObject",
-      "Resource": "${aws_s3_bucket.static_app.arn}/*"
+      "Resource": "arn:aws:s3:::${aws_s3_bucket.static_app.id}/*"
     }
-
   ]
 }
-POLICY
+EOF
   depends_on = ["aws_s3_bucket.static_app"]
 }

@@ -15,5 +15,5 @@ variable "private_subnet_cidr" {
 }
 
 variable "key_name" {
-  default = "we45_cloudwatch"
+  default = "we45_test"
 }

@@ -4,13 +4,14 @@ Brought to you by we45
 
 ![](img/we45logo.jpg)
 
-###Contents
+### Contents
 1. AWS Cli
 2. EC2
 3. KMS
 4. IAM
 5. Vulnerability Assessment
-6. Many more .....
+6. S3
+7. terraform
 
 
 #### Contact Us

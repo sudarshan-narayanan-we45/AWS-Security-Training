@@ -11,7 +11,7 @@ resource "tls_private_key" "inspector_key" {
 }
 
 resource "aws_key_pair" "generated_key" {
-  key_name   = "we45_aws_inspector"
+  key_name   = "we45_aws_inspector-${random_string.random_name.result}"
   public_key = "${tls_private_key.inspector_key.public_key_openssh}"
 }
 

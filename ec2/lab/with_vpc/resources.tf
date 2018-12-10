@@ -12,7 +12,7 @@ resource "tls_private_key" "we45_test_key" {
 }
 
 resource "aws_key_pair" "generated_key" {
-  key_name   = "${var.key_name}"
+  key_name   = "${var.key_name}--${random_string.random_name.result}"
   public_key = "${tls_private_key.we45_test_key.public_key_openssh}"
 }
 
@@ -26,7 +26,7 @@ resource "aws_instance" "bastion_host" {
   vpc_security_group_ids = ["${aws_security_group.internet_ssh.id}"]
   associate_public_ip_address = true
   tags {
-    Name = "bastion-host"
+    Name = "bastion-host-${random_string.random_name.result}"
   }
   depends_on = [
     "aws_subnet.public-subnet",
@@ -49,7 +49,7 @@ resource "aws_instance" "db" {
   associate_public_ip_address = false
 
   tags {
-    Name = "redis-db"
+    Name = "redis-db-${random_string.random_name.result}"
   }
   connection {
     type = "ssh"
@@ -94,7 +94,7 @@ resource "aws_instance" "wb" {
   associate_public_ip_address = true
   source_dest_check = false
   tags {
-    Name = "flask-app"
+    Name = "flask-app-${random_string.random_name.result}"
   }
 
   connection {
@@ -120,4 +120,3 @@ resource "aws_instance" "wb" {
   depends_on = ["aws_instance.db"]
 
 }
-

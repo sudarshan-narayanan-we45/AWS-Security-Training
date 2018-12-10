@@ -1,5 +1,5 @@
 resource "aws_security_group" "internet_ssh" {
-  name = "Internet-ssh-${random_string.random_name.result}"
+  name = "internet_ssh"
   description = "Allow incoming SSH access for Bastion Host from Internet"
 
   ingress {
@@ -24,7 +24,7 @@ resource "aws_security_group" "internet_ssh" {
 }
 
 resource "aws_security_group" "internet_http" {
-  name = "Internet-http-${random_string.random_name.result}"
+  name = "internet_http"
   description = "Allow incoming HTTP connections to Web Server from the Internet"
 
   ingress {
@@ -56,7 +56,6 @@ resource "aws_security_group" "internet_http" {
 }
 
 resource "aws_security_group" "public_private_redis_ssh" {
-  name = "Public-private-redis-ssh-${random_string.random_name.result}"
   description = "Allow access to Redis and SSH from Public Subnet TO Private Subnet"
   ingress {
     from_port = 6379
@@ -80,7 +79,6 @@ resource "aws_security_group" "public_private_redis_ssh" {
 }
 
 resource "aws_security_group" "private_egress_http_https" {
-  name = "Private Egress - ${random_string.random_name.result}"
   description = "Allow access to HTTP and HTTPS from private subnet"
   egress {
     from_port = 80

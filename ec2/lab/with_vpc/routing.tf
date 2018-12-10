@@ -2,7 +2,7 @@ resource "aws_internet_gateway" "gateway" {
   vpc_id = "${aws_vpc.stack-example-vpc.id}"
 
   tags {
-    Name = "we45-VPC-Gateway-${random_string.random_name.result}"
+    Name = "VPC Gateway"
   }
 }
 
@@ -15,14 +15,14 @@ resource "aws_route_table" "public-route" {
   }
 
   tags {
-    Name = "PublicSubnetRoute-${random_string.random_name.result}"
+    Name = "Public Subnet Route"
   }
 }
 
 resource "aws_route_table" "private-route" {
   vpc_id = "${aws_vpc.stack-example-vpc.id}"
   tags {
-      Name = "Private-${random_string.random_name.result}"
+      Name = "Private"
   }
   route {
         cidr_block = "0.0.0.0/0"

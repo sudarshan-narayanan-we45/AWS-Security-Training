@@ -10,7 +10,7 @@ resource "tls_private_key" "we45_test_key" {
 }
 
 resource "aws_key_pair" "ssh" {
-  key_name   = "we45_test_key"
+  key_name   = "we45_test_key-${random_string.random_name.result}"
   public_key = "${tls_private_key.we45_test_key.public_key_openssh}"
 }
 
@@ -36,6 +36,10 @@ resource "aws_instance" "web" {
       "sudo apt-get update -y && apt-get upgrade -y",
       "sudo apt-get install nginx -y"
     ]
+  }
+
+  tags {
+    Name = "we45-web-app--${random_string.random_name.result}"
   }
 }
 
