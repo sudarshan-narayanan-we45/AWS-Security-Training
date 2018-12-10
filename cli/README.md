@@ -72,3 +72,8 @@ This command is interactive and prompts you to enter additional information. Ent
 
 
 **Note:**  AWS CLI is now ready to use.
+
+##### Step 4
+
+* Run `cd /home/vagrant/Desktop/Labs/AWS-Security-Training/`
+* Run `git pull`
