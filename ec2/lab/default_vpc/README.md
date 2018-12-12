@@ -19,17 +19,17 @@ In this exercise, our target is to create an environment that looks like this:
 
 ##### Step 2:
 
-*  **cd** into  `/home/vagrant/Desktop/Labs/AWS-Security-Training/ec2/lab/without_vpc`
+*  **cd** into  `/home/vagrant/Desktop/Labs/AWS-Security-Training/ec2/lab/default_vpc`
 
     ```commandline
-    cd /home/vagrant/Desktop/Labs/AWS-Security-Training/ec2/lab/without_vpc
+    cd /home/vagrant/Desktop/Labs/AWS-Security-Training/ec2/lab/default_vpc
     ```
 ##### Step 3:
 
 * Run `terraform init`
 
     ```commandline
-    root@ubuntu:~/Desktop/Labs/AWS-Security-Training/ec2/lab/without_vpc# terraform init
+    root@ubuntu:~/Desktop/Labs/AWS-Security-Training/ec2/lab/default_vpc# terraform init
     
     Initializing provider plugins...
     - Checking for available provider plugins on https://releases.hashicorp.com...
@@ -69,7 +69,7 @@ In this exercise, our target is to create an environment that looks like this:
     2. It will ask a permission to do the actions type `yes` and press enter to continue
     
 ```commandline
-root@ubuntu:~/Desktop/Labs/AWS-Security-Training/ec2/lab/without_vpc# terraform apply
+root@ubuntu:~/Desktop/Labs/AWS-Security-Training/ec2/lab/default_vpc# terraform apply
 provider.aws.region
   The region where AWS operations will take place. Examples
   are us-east-1, us-west-2, etc.
@@ -135,7 +135,7 @@ ec2_url = <your application public dns>
     2. It will ask permission to do the actions type `yes` and press enter to continue 
   
 ```commandline
-root@ubuntu:~/Desktop/Labs/AWS-Security-Training/ec2/lab/without_vpc# terraform destroy
+root@ubuntu:~/Desktop/Labs/AWS-Security-Training/ec2/lab/default_vpc# terraform destroy
 provider.aws.region
   The region where AWS operations will take place. Examples
   are us-east-1, us-west-2, etc.
