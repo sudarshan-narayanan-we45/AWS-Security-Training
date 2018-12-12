@@ -5,12 +5,6 @@
   You can use Amazon EC2 to launch as many or as few virtual servers as you need, configure security and networking, and manage storage. Amazon EC2 enables you to scale up or down to handle changes in requirements or spikes in popularity,
  reducing your need to forecast traffic.
 
-
-In this exercise, our target is to create an environment that looks like this:
-
-![](../../img/VPC_Subnet.png)
-
-
 ##### Step 1:
 
 * Open Terminal
