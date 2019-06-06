@@ -15,6 +15,8 @@ resource "aws_s3_bucket_object" "hello_file" {
 }
 
 
+
+
 resource "aws_iam_role_policy" "attach-policy" {
   role = "${aws_iam_role.tes_role.id}"
   policy = <<EOF
@@ -146,4 +148,9 @@ resource "aws_instance" "test-host" {
     inline = ["sudo aws s3 ls s3://${aws_s3_bucket.ec2-bucket.bucket}"]
   }
   depends_on = ["aws_iam_role.tes_role"]
+}
+
+
+output "web_public_dns" {
+  value = "${aws_instance.test-host.public_dns}"
 }

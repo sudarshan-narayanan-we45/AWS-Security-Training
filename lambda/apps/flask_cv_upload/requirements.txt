@@ -1,3 +1,0 @@
-Flask==1.0.2
-pyyaml==3.13
-aws-xray-sdk==2.1.0
