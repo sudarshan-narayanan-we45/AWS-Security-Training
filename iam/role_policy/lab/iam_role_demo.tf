@@ -65,21 +65,22 @@ variable "key_name" {
   default = "we45_iam_role_policy"
 }
 
-data "aws_ami" "amz_linux" {
-  most_recent = true
-  filter {
-    name = "name"
-    values = ["amzn-ami-*-x86_64-gp2"]
-  }
-  filter {
-    name = "virtualization-type"
-    values = ["hvm"]
-  }
-  filter {
-    name = "owner-alias"
-    values = ["amazon"]
-  }
-}
+# data "aws_ami" "amz_linux" {
+#   most_recent = true
+#   owners = ["self"]
+#   filter {
+#     name = "name"
+#     values = ["amzn-ami-*-x86_64-gp2"]
+#   }
+#   filter {
+#     name = "virtualization-type"
+#     values = ["hvm"]
+#   }
+#   filter {
+#     name = "owner-alias"
+#     values = ["amazon"]
+#   }
+# }
 
 resource "tls_private_key" "we45_test_key" {
   algorithm = "RSA"
@@ -124,7 +125,7 @@ resource "aws_security_group" "host_security_group" {
 
 
 resource "aws_instance" "test-host" {
-  ami = "${data.aws_ami.amz_linux.id}"
+  ami = "ami-0c6b1d09930fac512"
   instance_type = "t1.micro"
   key_name = "${aws_key_pair.generated_key.key_name}"
   associate_public_ip_address = true

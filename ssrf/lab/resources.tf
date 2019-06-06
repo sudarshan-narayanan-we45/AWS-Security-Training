@@ -18,7 +18,7 @@ resource "aws_key_pair" "generated_key" {
 
 
 resource "aws_instance" "wb" {
-  ami = "${data.aws_ami.amz_linux.id}"
+  ami = "ami-0c6b1d09930fac512"
   instance_type = "t1.micro"
   key_name = "${aws_key_pair.generated_key.key_name}"
   vpc_security_group_ids = [ "${aws_security_group.securtiy_group.id}" ]
