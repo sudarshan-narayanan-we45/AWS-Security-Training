@@ -11,10 +11,10 @@
 
 ##### Step 2:
 
-*  **cd** into  `/home/vagrant/Desktop/Labs/AWS-Security-Training/cloudtrail/lab`
+*  **cd** into  `/home/we45/AWS-Security-Training/cloudtrail/lab`
 
     ```commandline
-    cd /home/vagrant/Desktop/Labs/AWS-Security-Training/cloudtrail/lab
+    cd /home/we45/AWS-Security-Training/cloudtrail/lab
     ```
     
 ##### Step 3:

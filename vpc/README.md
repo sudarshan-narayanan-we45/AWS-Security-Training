@@ -11,10 +11,10 @@
 
 ##### Step 2:
 
-*  **cd** into  ` /home/vagrant/Desktop/Labs/AWS-Security-Training/vpc`
+*  **cd** into  ` /home/we45/AWS-Security-Training/vpc`
 
     ```commandline
-    cd  /home/vagrant/Desktop/Labs/AWS-Security-Training/vpc
+    cd  /home/we45/AWS-Security-Training/vpc
     ```
 
 ##### Step 3:

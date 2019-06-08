@@ -13,10 +13,10 @@ For each security group, you add rules that control the inbound traffic to insta
 
 ##### Step 2:
 
-*  **cd** into  `/home/vagrant/Desktop/Labs/AWS-Security-Training/security_group/lab`
+*  **cd** into  `/home/we45/AWS-Security-Training/security_group/lab`
 
     ```commandline
-    cd  /home/vagrant/Desktop/Labs/AWS-Security-Training/security_group/lab
+    cd  /home/we45/AWS-Security-Training/security_group/lab
     ```
 ##### Step 3:
 

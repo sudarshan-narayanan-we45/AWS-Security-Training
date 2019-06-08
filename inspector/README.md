@@ -15,10 +15,10 @@ and deviations from best practices.
 
 ##### Step 2:
 
-*  **cd** into  ` /home/vagrant/Desktop/Labs/AWS-Security-Training/inspector/lab`
+*  **cd** into  ` /home/we45/AWS-Security-Training/inspector/lab`
 
 ```commandline
-cd  /home/vagrant/Desktop/Labs/AWS-Security-Training/inspector/lab
+cd  /home/we45/AWS-Security-Training/inspector/lab
 ```
 ##### Step 3:
 
@@ -190,3 +190,4 @@ Destroy complete! Resources: 9 destroyed.
 
 
 ```
+/home/we45

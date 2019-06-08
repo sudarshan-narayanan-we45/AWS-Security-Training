@@ -11,10 +11,10 @@
 
 ##### Step 2:
 
-*  **cd** into  `/home/vagrant/Desktop/Labs/AWS-Security-Training/cloudwatch_alerts/lab`
+*  **cd** into  `/home/we45/AWS-Security-Training/cloudwatch_alerts/lab`
 
     ```commandline
-    cd /home/vagrant/Desktop/Labs/AWS-Security-Training/cloudwatch_alerts/lab
+    cd /home/we45/AWS-Security-Training/cloudwatch_alerts/lab
     ```
     
     
@@ -182,7 +182,7 @@
 
 ##### Step 5 :
  
- * **cd** into  `/home/vagrant/Desktop/Labs/AWS-Security-Training/cloudwatch_alerts/lab`
+ * **cd** into  `/home/we45//AWS-Security-Training/cloudwatch_alerts/lab`
  
  * Give necessary permission to `400 we45_cloudwatch.pem` file
  
@@ -197,7 +197,7 @@
 
  * Open terminal
 
- * **cd** into  `/home/vagrant/Desktop/Labs/AWS-Security-Training/cloudwatch_alerts/lab`
+ * **cd** into  `/home/we45//AWS-Security-Training/cloudwatch_alerts/lab`
 
  * Run `ssh -i we45_cloudwatch.pem ec2-user@<yourec2 instance public DNS>`
     
