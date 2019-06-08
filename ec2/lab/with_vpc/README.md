@@ -19,10 +19,10 @@ In this exercise, our target is to create an environment that looks like this:
 
 ##### Step 2:
 
-*  **cd** into  `/home/vagrant/Desktop/Labs/AWS-Security-Training/ec2/lab/with_vpc`
+*  **cd** into  `/home/we45/AWS-Security-Training/ec2/lab/with_vpc`
 
     ```commandline
-    cd /home/vagrant/Desktop/Labs/AWS-Security-Training/ec2/lab/with_vpc
+    cd /home/we45/AWS-Security-Training/ec2/lab/with_vpc
     ```
 ##### Step 3:
 

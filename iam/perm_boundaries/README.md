@@ -10,10 +10,10 @@
 
 ##### Step 2:
 
-*  **cd** into  `/home/vagrant/Desktop/Labs/AWS-Security-Training/iam/perm_boundaries`
+*  **cd** into  `/home/we45/AWS-Security-Training/iam/perm_boundaries`
 
     ```commandline
-    cd /home/vagrant/Desktop/Labs/AWS-Security-Training/iam/perm_boundaries
+    cd /home/we45/AWS-Security-Training/iam/perm_boundaries
     ```
 ##### Step 3:
 

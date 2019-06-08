@@ -13,10 +13,10 @@
 
 ##### Step 2:
 
-*  **cd** into  `/home/vagrant/Desktop/Labs/AWS-Security-Training/ec2/lab/default_vpc`
+*  **cd** into  `/home/we45/AWS-Security-Training/ec2/lab/default_vpc`
 
     ```commandline
-    cd /home/vagrant/Desktop/Labs/AWS-Security-Training/ec2/lab/default_vpc
+    cd /home/we45/AWS-Security-Training/ec2/lab/default_vpc
     ```
 ##### Step 3:
 
