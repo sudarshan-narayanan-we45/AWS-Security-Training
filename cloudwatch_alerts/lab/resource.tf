@@ -1,20 +1,20 @@
 
-data "aws_ami" "target_ami" {
-  most_recent = true
+# data "aws_ami" "target_ami" {
+#   most_recent = true
 
-  filter {
-    name   = "owner-alias"
-    values = ["amazon"]
-  }
+#   filter {
+#     name   = "owner-alias"
+#     values = ["amazon"]
+#   }
 
-  filter {
-    name   = "name"
-    values = ["${var.ami_name}"]
-  }
-}
+#   filter {
+#     name   = "name"
+#     values = ["${var.ami_name}"]
+#   }
+# }
 
 resource "aws_instance" "web_app" {
-  ami           = "${data.aws_ami.target_ami.id}"
+  ami           = "ami-0c6b1d09930fac512"
   instance_type = "${var.instance_type}"
   key_name = "${aws_key_pair.generated_key.key_name}"
   subnet_id     = "${aws_subnet.example.id}"
